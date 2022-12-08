@@ -7,6 +7,7 @@ function Login() {
   const [validatePass, setValidatePass] = useState(true);
   const [validateBorderEmail, setValidateBorderEmail] = useState("black");
   const [validateBorderPass, setValidateBorderPass] = useState("black");
+  const [validateUser, setValidateUser] = useState("");
 
   return (
     <div className='auth-container'>
@@ -45,7 +46,7 @@ function Login() {
             })
               .then((response) => response.json())
               .then((data) => {
-                console.log(data);
+                setValidateUser(data.message);
               })
               .catch((error) => {
                 console.error("Error:", error);
@@ -60,6 +61,7 @@ function Login() {
         <div className='error-alert'>
           {!validatePass ? <span>Please enter your password</span> : ""}
         </div>
+        <div className='error-alert'>{validateUser}</div>
         <label htmlFor='email'>Email</label>
         <input
           type='email'
