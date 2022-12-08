@@ -27,7 +27,7 @@ export default function SignUp() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          window.location.href = "http://127.0.0.1:3000/auth/login";
         })
         .catch((error) => {
           console.error("Error:", error);
