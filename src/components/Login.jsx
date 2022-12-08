@@ -46,11 +46,7 @@ function Login() {
             })
               .then((response) => response.json())
               .then((data) => {
-<<<<<<< HEAD
-                console.log(data.message);
-=======
                 setValidateUser(data.message);
->>>>>>> cdba0a783fddc73123c7d2254fa302a9cb453aa2
               })
               .catch((error) => {
                 console.error("Error:", error);
