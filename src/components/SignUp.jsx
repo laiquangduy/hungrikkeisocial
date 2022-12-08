@@ -16,6 +16,23 @@ export default function SignUp() {
       setNoEmail("");
       setNoPassword("Please enter your password.");
     } else {
+      const data = { email: email, password: password };
+
+      fetch("https://example.com/profile", {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
       setNoEmail("");
       setNoPassword("");
       console.log(12);
