@@ -18,7 +18,7 @@ export default function SignUp() {
     } else {
       const data = { email: email, password: password };
 
-      fetch("https://example.com/profile", {
+      fetch("http://127.0.0.1:8000/auth/register", {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
