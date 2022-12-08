@@ -7,7 +7,8 @@ export default function SignUp() {
   const [noEmail, setNoEmail] = useState([]);
   const [noPassword, setNoPassword] = useState([]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!email) {
       setNoEmail("Please enter your email address.");
     } else if (!password) {
