@@ -18,16 +18,19 @@ function Login() {
           if (email === "" && pass !== "") {
             setValidateEmail(false);
             setValidatePass(true);
+            setValidateUser("");
             setValidateBorderEmail("red");
             setValidateBorderPass("black");
           } else if (email === "" && pass === "") {
             setValidateEmail(false);
             setValidatePass(true);
+            setValidateUser("");
             setValidateBorderEmail("red");
             setValidateBorderPass("red");
           } else if (pass === "" && email !== "") {
             setValidatePass(false);
             setValidateEmail(true);
+            setValidateUser("");
             setValidateBorderEmail("black");
             setValidateBorderPass("red");
           } else if (pass !== "" && email !== "") {
