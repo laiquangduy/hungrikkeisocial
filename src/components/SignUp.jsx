@@ -9,6 +9,7 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("test");
     if (!email) {
       setNoEmail("Please enter your email address.");
     } else if (!password) {
