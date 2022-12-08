@@ -62,6 +62,7 @@ function Login() {
           {!validatePass ? <span>Please enter your password</span> : ""}
         </div>
         <div className='error-alert'>{validateUser}</div>
+
         <label htmlFor='email'>Email</label>
         <input
           type='email'
