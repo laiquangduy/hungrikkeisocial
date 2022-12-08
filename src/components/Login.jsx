@@ -5,6 +5,8 @@ function Login() {
   const [pass, setPass] = useState("");
   const [validateEmail, setValidateEmail] = useState(true);
   const [validatePass, setValidatePass] = useState(true);
+  const [validateBorderEmail, setValidateBorderEmail] = useState("black");
+  const [validateBorderPass, setValidateBorderPass] = useState("black");
 
   return (
     <div className='auth-container'>
@@ -12,19 +14,42 @@ function Login() {
         className='auth-form-container'
         onSubmit={(e) => {
           e.preventDefault();
-          if (email === "") {
+          if (email === "" && pass !== "") {
             setValidateEmail(false);
+            setValidatePass(true);
+            setValidateBorderEmail("red");
+            setValidateBorderPass("black");
           } else if (email === "" && pass === "") {
             setValidateEmail(false);
-          } else if (pass === ""){
+            setValidatePass(true);
+            setValidateBorderEmail("red");
+            setValidateBorderPass("red");
+          } else if (pass === "" && email !== "") {
             setValidatePass(false);
-          } else if (email !== "") {
-            setValidateEmail(true)
-          } else if (pass !== "") {
-            setValidatePass(true)
-          } else if (email === "" && pass !== ""){
-            setValidateEmail(false);
-           
+            setValidateEmail(true);
+            setValidateBorderEmail("black");
+            setValidateBorderPass("red");
+          } else if (pass !== "" && email !== "") {
+            setValidatePass(true);
+            setValidateEmail(true);
+            setValidateBorderEmail("black");
+            setValidateBorderPass("black");
+            const data = { email: email, password: pass };
+
+            fetch("http://127.0.0.1:8000/auth/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
           }
         }}
       >
@@ -43,6 +68,7 @@ function Login() {
 
             // e.target.value!==""? setValidate(true) : setValidate(false)
           }}
+          style={{ borderColor: validateBorderEmail }}
         />
         <label htmlFor='password'>Password</label>
         <input
@@ -50,6 +76,7 @@ function Login() {
           onChange={(e) => {
             setPass(e.target.value);
           }}
+          style={{ borderColor: validateBorderPass }}
         ></input>
         <label className='forgot-password'>Forgot password?</label>
         <button type='submit' className='btn-sign-in'>
