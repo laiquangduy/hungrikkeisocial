@@ -30,7 +30,7 @@ export default function SignUp() {
           console.log(data.message);
           setNoEmail(data.message);
           if (data.message === "Create one successfully") {
-            window.location.href = "http://127.0.0.1:3000/auth/login";
+            window.location.href = "http://locallhost:3000/auth/login";
           }
         })
         .catch((error) => {
