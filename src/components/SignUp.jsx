@@ -28,6 +28,7 @@ export default function SignUp() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data.message);
+          setNoEmail(data.message);
           if (data.message === "Create one successfully") {
             window.location.href = "http://127.0.0.1:3000/auth/login";
           }
