@@ -27,7 +27,10 @@ export default function SignUp() {
       })
         .then((response) => response.json())
         .then((data) => {
-          window.location.href = "http://127.0.0.1:3000/auth/login";
+          console.log(data.message);
+          if (data.message === "Create one successfully") {
+            window.location.href = "http://127.0.0.1:3000/auth/login";
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -35,7 +38,6 @@ export default function SignUp() {
 
       setNoEmail("");
       setNoPassword("");
-      console.log(12);
     }
   };
 
