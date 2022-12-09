@@ -4,8 +4,17 @@ import logo from "../logo121.png";
 export default function SignUp() {
   const [email, setEmail] = useState([]);
   const [password, setPassword] = useState([]);
+  const [firstName, setFirstName] = useState([]);
+  const [lastName, setLastName] = useState([]);
+  const [job, setJob] = useState([]);
+  const [company, setCompany] = useState([]);
+  const [phone, setPhone] = useState([]);
+  const [location, setLocation] = useState([]);
   const [noEmail, setNoEmail] = useState([]);
   const [noPassword, setNoPassword] = useState([]);
+  const [noFirstName, setNoFirstName] = useState([]);
+  const [noLastName, setNoLastName] = useState([]);
+  const [noLocation, setNoLocation] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +24,21 @@ export default function SignUp() {
     } else if (!password) {
       setNoEmail("");
       setNoPassword("Please enter your password.");
+    } else if (!firstName) {
+      setNoEmail("");
+      setNoPassword("");
+      setFirstName("Please enter your first name.");
+    } else if (!lastName) {
+      setNoEmail("");
+      setNoPassword("");
+      setNoFirstName("");
+      setNoLastName("Please enter your last name.");
+    } else if (!location) {
+      setNoEmail("");
+      setNoPassword("");
+      setNoFirstName("");
+      setNoLastName("");
+      setLocation("Please enter your location.");
     } else {
       const data = { email: email, password: password };
 
@@ -41,6 +65,9 @@ export default function SignUp() {
 
       setNoEmail("");
       setNoPassword("");
+      setNoFirstName("");
+      setNoLastName("");
+      setLocation("");
     }
   };
 
@@ -53,22 +80,74 @@ export default function SignUp() {
         <div className='form-sign-up'>
           <p className='title'>Make the most of your professional life</p>
           <form onSubmit={handleSubmit} className='form'>
-            <p>Email</p>
-            <input
-              className='input'
-              onChange={(e) => setEmail(e.target.value)}
-              type='email'
-              value={email}
-            />
-            <p className='validate'>{noEmail}</p>
-            <p>Password (6 or more characters)</p>
-            <input
-              className='input'
-              onChange={(e) => setPassword(e.target.value)}
-              type='password'
-              value={password}
-            />
-            <p className='validate'>{noPassword}</p>
+            <div className='form-input'>
+              <div className='child1'>
+                <p>Email</p>
+                <input
+                  className='input'
+                  onChange={(e) => setEmail(e.target.value)}
+                  type='email'
+                  value={email}
+                />
+                <p className='validate'>{noEmail}</p>
+                <p>Password (6 or more characters)</p>
+                <input
+                  className='input'
+                  onChange={(e) => setPassword(e.target.value)}
+                  type='password'
+                  value={password}
+                />
+                <p className='validate'>{noPassword}</p>
+                <p>First Name</p>
+                <input
+                  className='input'
+                  onChange={(e) => setFirstName(e.target.value)}
+                  type='text'
+                  value={firstName}
+                />
+                <p className='validate'>{noFirstName}</p>
+
+                <p>Last Name</p>
+                <input
+                  className='input'
+                  onChange={(e) => setLastName(e.target.value)}
+                  type='text'
+                  value={lastName}
+                />
+                <p className='validate'>{noLastName}</p>
+              </div>
+              <div className='child2'>
+                <p>Job</p>
+                <input
+                  className='input'
+                  onChange={(e) => setJob(e.target.value)}
+                  type='text'
+                  value={job}
+                />
+                <p>Company</p>
+                <input
+                  className='input'
+                  onChange={(e) => setCompany(e.target.value)}
+                  type='text'
+                  value={company}
+                />
+                <p>Phone Number</p>
+                <input
+                  className='input'
+                  onChange={(e) => setPhone(e.target.value)}
+                  type='number'
+                  value={phone}
+                />
+                <p>Location</p>
+                <input
+                  className='input'
+                  onChange={(e) => setLocation(e.target.value)}
+                  type='text'
+                  value={location}
+                />
+                <p className='validate'>{noLocation}</p>
+              </div>
+            </div>
             <div className='policy'>
               By clicking Agree & Join, you agree to the Rikkei Social{" "}
               <a href='#'>User Agreement</a>, <a href='#'>Privacy Policy</a>,{" "}
