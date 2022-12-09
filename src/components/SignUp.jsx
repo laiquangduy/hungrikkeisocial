@@ -43,8 +43,7 @@ export default function SignUp() {
       const data = {
         email: email,
         password: password,
-        firstName: firstName,
-        lastName: lastName,
+        fullName: firstName + lastName,
         job: job,
         company: company,
         location: location,
