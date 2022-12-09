@@ -40,7 +40,15 @@ export default function SignUp() {
       setNoLastName("");
       setLocation("Please enter your location.");
     } else {
-      const data = { email: email, password: password };
+      const data = {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        job: job,
+        company: company,
+        location: location,
+      };
 
       fetch("http://127.0.0.1:8000/auth/register", {
         method: "POST", // or 'PUT'
