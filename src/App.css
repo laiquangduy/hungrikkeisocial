@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-color: #F3F2EF;
+}
+.logo-brand{
+  height: 44px;
+  width: 44px;
+  border-radius: 5px;
+}
+.nav-container{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-nav{
+  text-decoration: none;
   display: flex;
   flex-direction: column;
+  color: #666666;
+  text-align: center;
+  cursor: pointer;
+  width: 90px;
+  height: 52px;
+}
+
+.btn-nav:hover{
+  color: #191919;
+}
+.search-input{
+  border: none;
+  background-color: #EEF3F8;
+  border-radius: 5px;
+  height: 44px;
+  
+}
+/* .search-input:focus{
+  width: 20%;
+} */
+@media screen and (max-width: 600px) {
+  
+}
+.container-nav-logo{
+  display: flex;
+  margin-top: 4px;
+}
+.flex{
+  display: flex;
+}
+.container-search{
+  background-color: #EEF3F8;
+  display: flex;
+ align-items: center;
+  height: 44px;
+  margin-left: 2px;
+}
+.container-search:focus{
+  outline: #191919;
+}
+.avatar-user{
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+nav a.active{
+  color: black;
+  border-bottom: 1px solid black;
+}
+.ava-seemore{
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.btn-nav-ava{
+  background-color: white;
 }
+.btn-profile{
+  border-radius: 99px;
+  border: 1px solid #0A66C2;
+  text-align: center;
+}
+.btn-profile:hover{
+  background-color: #E2F0FE;
+  border: 2px solid #0A66C2;
+}
+.profile-avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.list-item{
+  color: #666666;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.profile-user{
+  display: flex;
+  align-items: center;
+  /* flex-direction: row; */
+}
+.list-item:hover{
+  text-decoration:underline;
+}
+.list-item-title{
+  font-weight: bold;
+}
+.style-menu{
+  padding: 10px;
 }
