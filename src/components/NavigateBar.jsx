@@ -13,7 +13,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import MenuItemD from "./MenuItemD";
+
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
 import ArchiveIcon from "@mui/icons-material/Archive";
@@ -76,134 +76,174 @@ function NavigateBar() {
   return (
     <>
       <nav className='nav-container'>
-        <div className='container-nav-logo'>
-          <Link to='/'>
-            <img
-              className='logo-brand'
-              src={require("../images/rc.jpg")}
-              alt=''
-            />
-          </Link>
-          <div className='container-search'>
-            <SearchIcon />
-            <input placeholder='Search' className='search-input' />
-          </div>
-        </div>
-        <div className='flex'>
-          <NavLink to='/feed' className='btn-nav'>
-            <div>
-              <HomeIcon />
+        
+        <Grid container spacing={1}>
+          <Grid xs={2}></Grid>
+          <Grid xs={4} sx={{
+    padding:0
+    }} >
+    
+   
+            <div className='container-nav-logo'>
+              <Link to='/'>
+                <img
+                  className='logo-brand'
+                  src={require("../images/rc.jpg")}
+                  alt=''
+                />
+              </Link>
+              <div className='container-search'>
+                <SearchIcon sx={{ fontSize: "30px" }} />
+                <input placeholder='Search' className='search-input' />
+              </div>
             </div>
-            <span>Home</span>
-          </NavLink>
-          <NavLink to='/mynetwork' className='btn-nav'>
-            <div className='center'>
-              <GroupIcon />
-            </div>
-            <span>My Network</span>
-          </NavLink>
-          <NavLink to='/jobs' className='btn-nav'>
-            <div>
-              <WorkIcon />
-            </div>
-            <span>Jobs</span>
-          </NavLink>
-          <NavLink to='/messaging' className='btn-nav'>
-            <div>
-              <SmsIcon />
-            </div>
-            <span>Messaging</span>
-          </NavLink>
-          <NavLink to='/notifications' className='btn-nav'>
-            <div>
-              <NotificationsIcon />
-            </div>
-            <span>Notifications</span>
-          </NavLink>
-          <div
-            // id="demo-customized-button"
-            aria-controls={open ? "demo-customized-menu" : undefined}
-            aria-haspopup='true'
-            aria-expanded={open ? "true" : undefined}
-            variant='contained'
-            disableElevation
-            onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
-            className='btn-nav'
-          >
-            <div>
-              <img
-                src={require("../images/avatar.png")}
-                alt=''
-                className='avatar-user'
-              />
-            </div>
-            <span className='ava-seemore'>
-              Me
-              <ExpandMoreIcon />
-            </span>
-          </div>
-          <StyledMenu
-            MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            {" "}
-            <div className='style-menu'>
-              <div onClick={handleClose} disableRipple>
-                <div className='profile-user'>
+          </Grid>
+          <Grid xs={5} sx={{
+    padding:0
+    }} >
+            <div className='flex'>
+              <NavLink to='/feed' className='btn-nav'>
+                <div>
+                  <HomeIcon  />
+                </div>
+                <span className='btn-nav-name'>Home</span>
+              </NavLink>
+              <NavLink to='/mynetwork' className='btn-nav'>
+                <div >
+                  <GroupIcon />
+                </div>
+                <span className='btn-nav-name'>My Network</span>
+              </NavLink>
+              <NavLink to='/jobs' className='btn-nav'>
+                <div>
+                  <WorkIcon />
+                </div>
+                <span className='btn-nav-name'>Jobs</span>
+              </NavLink>
+              <NavLink to='/messaging' className='btn-nav'>
+                <div>
+                  <SmsIcon />
+                </div>
+                <span className='btn-nav-name'>Messaging</span>
+              </NavLink>
+              <NavLink to='/notifications' className='btn-nav'>
+                <div>
+                  <NotificationsIcon />
+                </div>
+                <span className='btn-nav-name'>Notifications</span>
+              </NavLink>
+              <div
+                // id="demo-customized-button"
+                aria-controls={open ? "demo-customized-menu" : undefined}
+                aria-haspopup='true'
+                aria-expanded={open ? "true" : undefined}
+                variant='contained'
+                disableElevation
+                onClick={handleClick}
+                endIcon={<KeyboardArrowDownIcon />}
+                className='btn-nav'
+              >
+                <div>
                   <img
                     src={require("../images/avatar.png")}
                     alt=''
-                    className='profile-avatar'
+                    className='avatar-user'
                   />
-
-                  <span>UserName</span>
                 </div>
-                <div className='btn-profile'>View Profile</div>
+                <span className='ava-seemore'>
+                  Me
+                  <ExpandMoreIcon />
+                </span>
               </div>
-              <Divider sx={{ my: 0.5 }} />
 
-              <div
-                className='list-item-title'
-                onClick={handleClose}
-                disableRipple
+              <StyledMenu
+                MenuListProps={{
+                  "aria-labelledby": "demo-customized-button",
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
               >
-                Account
-              </div>
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Settings & Privacy
-              </div>
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Help
-              </div>
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Language
-              </div>
-              <Divider sx={{ my: 0.5 }} />
-              <div
-                className='list-item-title'
-                onClick={handleClose}
-                disableRipple
-              >
-                Manage
-              </div>
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Posts & Activity
-              </div>
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Job Posting Account
-              </div>
-              <Divider sx={{ my: 0.5 }} />
-              <div className='list-item' onClick={handleClose} disableRipple>
-                Sign out
-              </div>
+                {" "}
+                <div className='style-menu'>
+                  <div onClick={handleClose} disableRipple>
+                    <div className='profile-user'>
+                      <img
+                        src={require("../images/avatar.png")}
+                        alt=''
+                        className='profile-avatar'
+                      />
+                      <span>UserName</span>
+                    </div>
+                    <div className='btn-profile'>View Profile</div>
+                  </div>
+                  <Divider sx={{ my: 0.5 }} />
+
+                  <div
+                    className='list-item-title'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Account
+                  </div>
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Settings & Privacy
+                  </div>
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Help
+                  </div>
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Language
+                  </div>
+                  <Divider sx={{ my: 0.5 }} />
+                  <div
+                    className='list-item-title'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Manage
+                  </div>
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Posts & Activity
+                  </div>
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Job Posting Account
+                  </div>
+                  <Divider sx={{ my: 0.5 }} />
+                  <div
+                    className='list-item'
+                    onClick={handleClose}
+                    disableRipple
+                  >
+                    Sign out
+                  </div>
+                </div>
+              </StyledMenu>
             </div>
-          </StyledMenu>
-        </div>
+          </Grid>
+          <Grid xs={1}></Grid>
+        </Grid>
+        
       </nav>
     </>
   );
