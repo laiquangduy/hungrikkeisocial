@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import logo from "../linkedin.svg";
+import { useCookies } from "react-cookie";
+import Cookies from "js-cookie";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -8,6 +11,7 @@ function Login() {
   const [validateBorderEmail, setValidateBorderEmail] = useState("black");
   const [validateBorderPass, setValidateBorderPass] = useState("black");
   const [validateUser, setValidateUser] = useState("");
+  const [cookies, setCookie] = useCookies(["user"]);
 
   return (
     <div className='auth-container'>
@@ -50,6 +54,10 @@ function Login() {
               .then((response) => response.json())
               .then((data) => {
                 setValidateUser(data.message);
+                setCookie("userID", data.userID, { path: "/" });
+
+                // console.log(data);
+                console.log(Cookies.get("userID"));
               })
               .catch((error) => {
                 console.error("Error:", error);
