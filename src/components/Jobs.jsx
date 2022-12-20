@@ -7,6 +7,7 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import SmartDisplayIcon from "@mui/icons-material/SmartDisplay";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Grid from "@mui/material/Unstable_Grid2";
+import Footer from "./Footer";
 
 function Jobs() {
   return (
@@ -47,7 +48,8 @@ function Jobs() {
                   Application settings
                 </li>
               </ul>
-              <div className='btn-jobs-post'>Post a free job</div>
+              <div className='btn-jobs-post'><div className="btn-jobs-post-inner">Post a free job</div></div>
+             
               
             </div>
           </Grid>
@@ -72,6 +74,7 @@ function Jobs() {
                 <div className='job-guidance'>I want to improve my resume</div>
               </div>
             </div>
+            <Footer/>
           </Grid>
           <Grid xs={2.5}></Grid>
         </Grid>

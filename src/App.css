@@ -6,6 +6,8 @@
 
 body{
   background-color: #F3F2EF;
+  overflow-y:scroll;
+  overflow-x: hidden;
 }
 .logo-brand{
   height: 44px;
@@ -70,7 +72,7 @@ body{
 }
 .container-nav-logo{
   display: flex;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 .flex{
   display: flex;
@@ -105,11 +107,16 @@ nav a.active{
 }
 .btn-profile{
   border-radius: 99px;
-  border: 1px solid #0A66C2;
   text-align: center;
-  
+  border: 1px solid #0A66C2;
 }
-.btn-profile:hover{
+.btn-profile-inner{
+  border-radius: 99px;
+  border: 2px solid white;
+
+
+}
+.btn-profile-inner:hover{
   background-color: #E2F0FE;
   border: 2px solid #0A66C2;
 }
@@ -144,17 +151,26 @@ nav a.active{
 }
 
 .btn-jobs-post{
-  border: 1px solid #0A66C2;
+  outline: 1px solid #0A66C2;
   border-radius: 99px;
   height: 35px;
+  /* text-align: center;
+  align-items: center; */
+  color: #0A66C2; 
+}
+.btn-jobs-post-inner{
+  border-radius: 99px;
+  outline: 2px solid #F3F2EF;
+  height: 35px;
   text-align: center;
-  align-items: center;
-  padding: 5px;
-  margin: 5px;
+  line-height: 35px;
 }
-.btn-jobs-post:hover{
-  border: 2px solid #0A66C2;
+.btn-jobs-post-inner:hover{
+  outline: 2px solid #0A66C2;
+  background-color: #E2F0FE;
+  
 }
+
 .job-block{
   border-radius: 10px;
   background-color: white;
@@ -171,17 +187,19 @@ nav a.active{
   margin: 0px 0% 2%;
   text-align: center;
 
+
 }
 .btn-search-jobs{
-  border: 1px solid #0A66C2;
+  outline: 1px solid #0A66C2;
   border-radius: 99px;
   width: 120px;
   display: flex;
   justify-content: center;
+  display: inline-block;
 }
 .btn-search-jobs:hover{
   background-color: #E2F0FE;
-  border: 2px solid #0A66C2;
+  outline: 2px solid #0A66C2;
   text-decoration: underline;
 }
 
@@ -327,3 +345,4 @@ background-color:#EBEBEB;
  
   
   }
+

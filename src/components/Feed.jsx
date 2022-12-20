@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
 
 import Grid from "@mui/material/Unstable_Grid2";
+import Footer from "./Footer";
 
 function Feed() {
   const [userData, setUserData] = useState([]);
@@ -117,44 +118,9 @@ function Feed() {
         </Grid>
 
         <Grid xs={2.5} className='feed-right-block'>
-          <div className='block'>Add to your feed</div>
+        <div className='block'>Add to your feed</div>
           <div></div>
-
-          <ul className='footer'>
-            <img
-              src='https://htmlcolorcodes.com/assets/images/colors/baby-blue-color-solid-background-1920x1080.png'
-              className='banner-ad'
-              alt=''
-            />
-            <li>
-              <span>About</span>
-            </li>
-
-            <li>
-              <span>Accessibility</span>
-            </li>
-            <li>
-              <span>Help Center</span>
-            </li>
-            <li>
-              <span>Privacy & Terms</span>
-            </li>
-            <li>
-              <span>Ad Choices </span>
-            </li>
-            <li>
-              <span>Advertising</span>
-            </li>
-            <li>
-              <span>Business Services</span>
-            </li>
-            <li>
-              <span>Get the LinkedIn app</span>
-            </li>
-            <li>
-              <span>More</span>
-            </li>
-          </ul>
+          <Footer/>
         </Grid>
         <Grid xs={2}></Grid>
       </Grid>

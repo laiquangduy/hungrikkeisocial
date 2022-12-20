@@ -168,6 +168,7 @@ function NavigateBar() {
                 MenuListProps={{
                   "aria-labelledby": "demo-customized-button",
                 }}
+                disableScrollLock={true}
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
@@ -183,7 +184,7 @@ function NavigateBar() {
                       />
                       <span>{userData[0].fullName}</span>
                     </div>
-                    <div className='btn-profile'>View Profile</div>
+                    <div className='btn-profile'><div className='btn-profile-inner'>View Profile</div></div>
                   </div>
                   <Divider sx={{ my: 0.5 }} />
 
