@@ -14,11 +14,18 @@ body{
 }
 .nav-container{
   background-color: white;
-  /* display: flex;
-  flex-direction: row; */
-  /* justify-content: space-evenly; */
- /* padding-top:8px; */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99; 
 }
+ 
+
+/* .nav-fixed{
+  position: fixed;
+ z-index: 99;
+} */
 
 
 .btn-nav{
@@ -46,8 +53,8 @@ body{
 /* .search-input:focus{
   width: 20%;
 } */
-@media screen and (max-width: 830px) {
-  .btn-nav-name{display: none;}
+@media screen and (max-width: 980px) {
+  /* .btn-nav-name{display: none;}
   .sx{font-size: 80px;}
   .ava-seemore{display: none;}
   .nav-container{
@@ -55,7 +62,11 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+  } */
+  .feed-right-block{
+    display: none;
   }
+
 }
 .container-nav-logo{
   display: flex;
@@ -67,7 +78,7 @@ body{
 .container-search{
   background-color: #EEF3F8;
   display: flex;
- align-items: center;
+  align-items: center;
   height: 44px;
   margin-left: 5px;
   border-radius: 5px;
@@ -128,13 +139,10 @@ nav a.active{
 }
 
 .container-page{
-  margin-top: 24px;
+  margin-top: 70px;
   
 }
-.page-block{
-  
-  
-}
+
 .btn-jobs-post{
   border: 1px solid #0A66C2;
   border-radius: 99px;
@@ -148,18 +156,19 @@ nav a.active{
   border: 2px solid #0A66C2;
 }
 .job-block{
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
   list-style-type: none;
-  margin: 0px 2% 2%;
+  margin: 0px 0% 2%;
   padding: 15px;
   border: 1px solid #E0DFDC;
 
 }
 .job-block-searchjobs{
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
-  margin: 0px 2% 2%;
+  border: 1px solid #E0DFDC;
+  margin: 0px 0% 2%;
   text-align: center;
 
 }
@@ -169,17 +178,13 @@ nav a.active{
   width: 120px;
   display: flex;
   justify-content: center;
-  
-  
 }
 .btn-search-jobs:hover{
   background-color: #E2F0FE;
   border: 2px solid #0A66C2;
   text-decoration: underline;
 }
-.middle-block{
 
-}
 .job-guidance{
   background-color: #F9FAFB;
 }
@@ -200,13 +205,13 @@ nav a.active{
   margin: 5px 0px 5px 0px;
 }
 .job-block-left{
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   list-style-type: none;
-  margin: 0px 2% 5%;
+  margin: 0px 0% 5%;
   padding: 15px;
   border: 1px solid #E0DFDC;
   
@@ -215,3 +220,110 @@ nav a.active{
 /* .user-block{
   height: 50px;
 } */
+.block{
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #E0DFDC;
+
+}
+.feed-ava{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  left: 35%;
+  top:40%;
+}
+
+.background-image{
+  background-color: 10px;
+  height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  /* position: absolute; */
+}
+.background-ava{
+  position: relative;
+}
+.space-white{
+  height: 50px;
+}
+.feed-name{
+  margin-top: 40px;
+  text-align: center;
+  font-weight: 600;
+}
+.feed-bio{
+  text-align: center;
+  color: #989898 ;
+}
+.feed-title{
+  border-top: 1px solid #F1F1F1;
+  padding: 5px;
+}
+.feed-title:hover{
+background-color:#EBEBEB;
+}
+.community-panel{
+  color: #337FCC;
+  font-weight: 500;
+  padding: 5px;
+}
+.community-panel:hover{
+  text-decoration: underline;
+}
+.block-community-panel{
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  position: sticky;
+  /* position: -webkit-sticky; */
+  top: 10%;
+  border: 1px solid #E0DFDC;
+
+}
+.footer{
+  color: #9C9C9A;
+  list-style-type: none;
+  text-align: center;
+ 
+  position: sticky;
+  /* position: -webkit-sticky; */
+  top: 10%;
+}
+.footer li{
+  display: inline;
+  padding: 0 10px 10px;
+  font-size: small;
+
+}
+.footer li span:hover{
+  color: #2A79C8;
+  text-decoration: underline;
+  
+  
+}
+.banner-ad{
+  width: 300px;
+  height: 250px;
+  border-radius: 10px;
+  position: sticky;
+  /* position: -webkit-sticky; */
+  top: 10%;
+}
+.grid-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-block-left{
+  
+  
+}
+.grid-block-right{
+ 
+  
+  }

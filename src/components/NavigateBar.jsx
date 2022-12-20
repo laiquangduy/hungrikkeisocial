@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
@@ -10,16 +10,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { styled, alpha } from "@mui/material/styles";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 
-import EditIcon from "@mui/icons-material/Edit";
+import Menu from "@mui/material/Menu";
+
 import Divider from "@mui/material/Divider";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Cookies from "js-cookie";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -64,6 +61,8 @@ const StyledMenu = styled((props) => (
   },
 }));
 function NavigateBar() {
+  const [userData, setUserData] = useState([]);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -73,17 +72,27 @@ function NavigateBar() {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(
+        `http://127.0.0.1:8000/api/v1/users/${Cookies.get("userID")}`
+      );
+      const json = await data.json();
+
+      setUserData(json);
+    };
+    fetchData();
+  }, []);
+  if (userData.length === 0) {
+    return null;
+  }
+
   return (
     <>
       <nav className='nav-container'>
-        
-        <Grid container spacing={1}>
-          <Grid xs={2}></Grid>
-          <Grid xs={4} sx={{
-    padding:0
-    }} >
-    
-   
+        <Grid container spacing={1} className='nav-fixed'>
+          <Grid xs={1.5}></Grid>
+          <Grid xs={4}>
             <div className='container-nav-logo'>
               <Link to='/'>
                 <img
@@ -98,18 +107,17 @@ function NavigateBar() {
               </div>
             </div>
           </Grid>
-          <Grid xs={5} sx={{
-    padding:0
-    }} >
+          <Grid xs={0.5}></Grid>
+          <Grid xs={4.5}>
             <div className='flex'>
               <NavLink to='/feed' className='btn-nav'>
                 <div>
-                  <HomeIcon  />
+                  <HomeIcon />
                 </div>
                 <span className='btn-nav-name'>Home</span>
               </NavLink>
               <NavLink to='/mynetwork' className='btn-nav'>
-                <div >
+                <div>
                   <GroupIcon />
                 </div>
                 <span className='btn-nav-name'>My Network</span>
@@ -145,7 +153,7 @@ function NavigateBar() {
               >
                 <div>
                   <img
-                    src={require("../images/avatar.png")}
+                    src={userData[0].avatar}
                     alt=''
                     className='avatar-user'
                   />
@@ -169,11 +177,11 @@ function NavigateBar() {
                   <div onClick={handleClose} disableRipple>
                     <div className='profile-user'>
                       <img
-                        src={require("../images/avatar.png")}
+                        src={userData[0].avatar}
                         alt=''
                         className='profile-avatar'
                       />
-                      <span>UserName</span>
+                      <span>{userData[0].fullName}</span>
                     </div>
                     <div className='btn-profile'>View Profile</div>
                   </div>
@@ -241,9 +249,8 @@ function NavigateBar() {
               </StyledMenu>
             </div>
           </Grid>
-          <Grid xs={1}></Grid>
+          {/* <Grid xs={1}></Grid> */}
         </Grid>
-        
       </nav>
     </>
   );

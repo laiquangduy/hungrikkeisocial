@@ -12,8 +12,8 @@ function Jobs() {
   return (
     <>
       <div className='page-block'>
-        <Grid container spacing={1}>
-          <Grid xs={2}></Grid>
+        <Grid container spacing={2}>
+          <Grid xs={1.5}></Grid>
           <Grid xs={2}>
             <div className='left-block'>
               <ul className='job-block-left'>
@@ -65,7 +65,7 @@ function Jobs() {
             </div>
           </Grid>
 
-          <Grid xs={2}>
+          <Grid xs={2.5}>
             <div className='right-block'>
               <div className='job-block'>
                 Job seeker guidance
@@ -73,7 +73,7 @@ function Jobs() {
               </div>
             </div>
           </Grid>
-          <Grid xs={2}></Grid>
+          <Grid xs={2.5}></Grid>
         </Grid>
       </div>
     </>
