@@ -9,7 +9,7 @@ body{
   overflow-y:scroll;
   overflow-x: hidden;
 }
-.logo-brand{
+.container-nav-logo .logo-brand{
   height: 44px;
   width: 44px;
   border-radius: 5px;
@@ -45,7 +45,7 @@ body{
 .btn-nav:hover{
   color: #191919;
 }
-.search-input{
+.container-search .search-input{
   border: none;
   background-color: #EEF3F8;
   border-radius: 5px;
@@ -127,6 +127,7 @@ nav a.active{
 }
 .list-item{
   color: #666666;
+  cursor: pointer;
 
 }
 .profile-user{

@@ -71,6 +71,10 @@ function NavigateBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleSignout = () => {
+    Cookies.remove('userID');
+    window.location.href="http://localhost:3001/auth/login"
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -183,6 +187,7 @@ function NavigateBar() {
                         className='profile-avatar'
                       />
                       <span>{userData[0].fullName}</span>
+                      
                     </div>
                     <div className='btn-profile'><div className='btn-profile-inner'>View Profile</div></div>
                   </div>
@@ -241,7 +246,7 @@ function NavigateBar() {
                   <Divider sx={{ my: 0.5 }} />
                   <div
                     className='list-item'
-                    onClick={handleClose}
+                    onClick={handleSignout}
                     disableRipple
                   >
                     Sign out
