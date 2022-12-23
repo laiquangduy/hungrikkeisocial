@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import logo from "../logo121.png";
+
 
 export default function SignUp() {
   const [email, setEmail] = useState([]);

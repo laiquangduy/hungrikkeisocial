@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import logo from "../linkedin.svg";
 import { useCookies } from "react-cookie";
 import Cookies from "js-cookie";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import AlertTitle from "@mui/material/AlertTitle";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -53,11 +56,26 @@ function Login() {
             })
               .then((response) => response.json())
               .then((data) => {
-                setValidateUser(data.message);
-                setCookie("userID", data.userID, { path: "/" });
-
-                // console.log(data);
-                console.log(Cookies.get("userID"));
+                if (
+                  data.message === "Wrong password" ||
+                  data.message === "User is not exist"
+                ) {
+                  setValidateUser(
+                    <Alert variant='filled' severity='error'>
+                      {data.message}
+                    </Alert>
+                  );
+                } else {
+                  setCookie("userID", data.userID, { path: "/" });
+                  setValidateUser(
+                    <Alert variant='filled' severity='success'>
+                      {data.message}
+                    </Alert>
+                  );
+                  window.location.href = "http://localhost:3000/feed";
+                  // console.log(data);
+                  console.log(Cookies.get("userID"));
+                }
               })
               .catch((error) => {
                 console.error("Error:", error);
@@ -66,6 +84,7 @@ function Login() {
         }}
       >
         <h1>Welcome to your professional community</h1>
+
         <div className='error-alert'>
           {!validateEmail ? <span>Please enter your email</span> : ""}
         </div>
@@ -83,6 +102,7 @@ function Login() {
             // e.target.value!==""? setValidate(true) : setValidate(false)
           }}
           style={{ borderColor: validateBorderEmail }}
+          className='input-signin'
         />
         <label htmlFor='password'>Password</label>
         <input
@@ -91,10 +111,15 @@ function Login() {
             setPass(e.target.value);
           }}
           style={{ borderColor: validateBorderPass }}
+          className='input-signin'
         ></input>
         <label className='forgot-password'>Forgot password?</label>
         <button type='submit' className='btn-sign-in'>
           Sign in
+        </button>
+        <div className='line-or'>or</div>
+        <button type='submit' className='btn-sign-up'>
+          Sign up
         </button>
       </form>
 
