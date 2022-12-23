@@ -12,6 +12,11 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import PreventAuth from "./utils/PreventAuth";
 
 // import SignIn from './components/Sign
+import logo from "./logo.svg";
+
+import CreatePost from "./components/CreatePost";
+import Post from "./components/Post";
+import FeedBody from "./components/FeedBody";
 
 function App() {
   return (
@@ -71,8 +76,8 @@ function App() {
           <Route path='/notifications' />
         </Routes>
       </div> */}
+      
     </>
   );
 }
-
 export default App;
