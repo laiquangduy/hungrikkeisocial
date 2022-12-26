@@ -233,7 +233,7 @@ function Post(props) {
   return (
     <div className='block'>
       <div style={{ display: "flex" }}>
-        <div style={{ width: "50px", marginRight: "10px" }}>
+        <div style={{ width: "10%", marginRight: "10px" }}>
           <img
             style={{ width: "100%" }}
             src='https://avatars.githubusercontent.com/u/55929607?v=4'

@@ -571,9 +571,12 @@ label.label input[type="file"] {
 }
 .post-header{
   display: flex;
+  width: 100%;
 }
+
 .post-header img{
-  width: 5%;
+  width: 10%;
+  height:10%;
 }
 .post-layout{
   background-color: white;
@@ -582,7 +585,7 @@ label.label input[type="file"] {
   line-height: 300%;
   border: 1px solid #ABABAB;
   border-radius: 999px;
-  width: 30%; 
+  width: 100%; 
   cursor: pointer;
    color: #666666;
 }
