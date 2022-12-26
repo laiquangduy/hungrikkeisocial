@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
 
 function Post(props) {
   const { postData } = props;
@@ -230,7 +231,7 @@ function Post(props) {
     }
   };
   return (
-    <div>
+    <div className='block'>
       <div style={{ display: "flex" }}>
         <div style={{ width: "50px", marginRight: "10px" }}>
           <img
@@ -249,8 +250,8 @@ function Post(props) {
           </div>
         </div>
       </div>
-      <div style={{ width: "500px" }}>{postData.content}</div>
-      <div style={{ width: "500px" }}>
+      <div style={{ width: "100%" }}>{postData.content}</div>
+      <div style={{ width: "100%" }}>
         {postData.postImg !== null ? (
           <img style={{ width: "100%" }} src={postData.postImg} alt='' />
         ) : (

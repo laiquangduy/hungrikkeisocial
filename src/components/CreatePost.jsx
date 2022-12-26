@@ -156,7 +156,7 @@ function CreatePost() {
   };
   return (
     <>
-      <div className='post-layout'>
+      <div className='post-layout block'>
         <div className='post-header'>
           <img
             src='https://avatars.githubusercontent.com/u/55929607?v=4'

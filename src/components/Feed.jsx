@@ -5,6 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import Footer from "./Footer";
 import NavigateBar from "./NavigateBar";
 import Loading from "../helpers/Loading";
+import FeedBody from "./FeedBody";
 
 function Feed() {
   const [userData, setUserData] = useState([]);
@@ -50,79 +51,9 @@ function Feed() {
             <div className='community-panel'>Followed Hashtags</div>
           </div>
         </Grid>
+
         <Grid xs={4}>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
-          <div className='block'>
-            This is postdfs fsdasfa a dhasdkasjd kasjk djasdlkdjaskljd klasjlkd
-            jaskljdlaskjd lasjdl asjlkd jsaljdlkasjd klasjdl jaskldj aslkdj
-            lksajd lkasjd lsjald jaslkd jaslkjd lskjdkl asjlkd jaslkjd lkasjd
-            ksajd klasjd lkasjdkl sajdlk asjld jasl
-          </div>
+          <FeedBody />
         </Grid>
 
         <Grid xs={2.5} className='feed-right-block'>
