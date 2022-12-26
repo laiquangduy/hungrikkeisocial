@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import logo from "../logo121.png";
 
-
 export default function SignUp() {
   const [email, setEmail] = useState([]);
   const [password, setPassword] = useState([]);
@@ -159,47 +158,47 @@ export default function SignUp() {
             </div>
             <div className='policy'>
               By clicking Agree & Join, you agree to the Rikkei Social{" "}
-              <a href='#'>User Agreement</a>, <a href='#'>Privacy Policy</a>,{" "}
-              <a href='#'>and Cookie Policy</a>.
+              <a href='/#'>User Agreement</a>, <a href='/#'>Privacy Policy</a>,{" "}
+              <a href='/#'>and Cookie Policy</a>.
             </div>
             <button className='btn-submit'> Agree & Join </button>
             <h5>
               Already on Rikkei Social?
-              <a href='#'>Sign in</a>
+              <a href='/#'>Sign in</a>
             </h5>
           </form>
         </div>
         <div className='vkk'>
-          Looking to create a page for a business? <a href='#'>Get help</a>
+          Looking to create a page for a business? <a href='/#'>Get help</a>
         </div>
         <div>
           <ul className='ul'>
             <li>
-              <a href='#'>Accessibility</a>
+              <a href='/#'>Accessibility</a>
             </li>
             <li>
-              <a href='#'>Privacy Policy</a>
+              <a href='/#'>Privacy Policy</a>
             </li>
             <li>
-              <a href='#'>Copyright Policy</a>
+              <a href='/#'>Copyright Policy</a>
             </li>
             <li>
-              <a href='#'>Guest Controls</a>
+              <a href='/#'>Guest Controls</a>
             </li>
             <li>
-              <a href='#'>About</a>
+              <a href='/#'>About</a>
             </li>
             <li>
-              <a href='#'>User Agreement</a>
+              <a href='/#'>User Agreement</a>
             </li>
             <li>
-              <a href='#'>Cookie Policy</a>
+              <a href='/#'>Cookie Policy</a>
             </li>
             <li>
-              <a href='#'>Brand Policy</a>
+              <a href='/#'>Brand Policy</a>
             </li>
             <li>
-              <a href='#'>Community Guidelines</a>
+              <a href='/#'>Community Guidelines</a>
             </li>
           </ul>
         </div>

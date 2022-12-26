@@ -17,6 +17,7 @@ import Divider from "@mui/material/Divider";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Cookies from "js-cookie";
+import Loading from "../helpers/Loading";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -72,9 +73,9 @@ function NavigateBar() {
     setAnchorEl(null);
   };
   const handleSignout = () => {
-    Cookies.remove('userID');
-    window.location.href="http://localhost:3000/auth/login"
-  }
+    Cookies.remove("userID");
+    window.location.href = "http://localhost:3000/auth/login";
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,8 +89,9 @@ function NavigateBar() {
     fetchData();
   }, []);
   if (userData.length === 0) {
-    return null;
+    return <Loading />;
   }
+  console.log(userData);
 
   return (
     <>
@@ -187,9 +189,10 @@ function NavigateBar() {
                         className='profile-avatar'
                       />
                       <span>{userData[0].fullName}</span>
-                      
                     </div>
-                    <div className='btn-profile'><div className='btn-profile-inner'>View Profile</div></div>
+                    <div className='btn-profile'>
+                      <div className='btn-profile-inner'>View Profile</div>
+                    </div>
                   </div>
                   <Divider sx={{ my: 0.5 }} />
 
