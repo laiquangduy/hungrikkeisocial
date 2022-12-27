@@ -30,7 +30,7 @@ function FeedBody() {
     <div>
       <CreatePost />
 
-      {postData.map((e, i) => (
+      {postData.posts.map((e, i) => (
         <Post key={i} postData={e} />
       ))}
     </div>

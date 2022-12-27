@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { set } from "react-hook-form";
+import { SendReaction } from "../helpers/SendReaction";
+import Cookies from "js-cookie";
+import { DeleteReaction } from "../helpers/DeleteReaction";
 
 function Post(props) {
   const { postData } = props;
-  // console.log(postData.postId);
+  // console.log(postData);
   const [style, setStyle] = useState({ display: "none" });
   const [like, setLike] = useState({
     status: false,
@@ -43,9 +46,54 @@ function Post(props) {
     default: false,
   });
   const reactState = [like, clap, heart, haha, dislike];
+  useEffect(() => {
+    if (postData.defaultReaction === "like") {
+      setLike({
+        ...like,
+        status: true,
+      });
+    } else if (postData.defaultReaction === "haha") {
+      setHaha({
+        ...haha,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "love") {
+      setHeart({
+        ...heart,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "clap") {
+      setClap({
+        ...clap,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "dislike") {
+      setDislike({
+        ...dislike,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    }
+  }, []);
 
   const handleClick = (e) => {
-    if (e.target.id === "like") {
+    if (e.target.id === "Like" && !like.status) {
+      SendReaction(postData.postId, "like", Cookies.get("userID"));
       setLike({
         ...like,
         status: true,
@@ -71,7 +119,9 @@ function Post(props) {
         status: false,
         default: false,
       });
-    } else if (e.target.id === "clap") {
+    } else if (e.target.id === "Clap" && !clap.status) {
+      SendReaction(postData.postId, "clap", Cookies.get("userID"));
+
       setLike({
         ...like,
         status: false,
@@ -97,7 +147,9 @@ function Post(props) {
         status: false,
         default: false,
       });
-    } else if (e.target.id === "heart") {
+    } else if (e.target.id === "Heart" && !heart.status) {
+      SendReaction(postData.postId, "love", Cookies.get("userID"));
+
       setLike({
         ...like,
         status: false,
@@ -123,7 +175,9 @@ function Post(props) {
         status: false,
         default: false,
       });
-    } else if (e.target.id === "haha") {
+    } else if (e.target.id === "Haha" && !haha.status) {
+      SendReaction(postData.postId, "haha", Cookies.get("userID"));
+
       setLike({
         ...like,
         status: false,
@@ -149,7 +203,9 @@ function Post(props) {
         status: false,
         default: false,
       });
-    } else if (e.target.id === "dislike") {
+    } else if (e.target.id === "Dislike" && !dislike.status) {
+      SendReaction(postData.postId, "dislike", Cookies.get("userID"));
+
       setLike({
         ...like,
         status: false,
@@ -176,34 +232,43 @@ function Post(props) {
         default: true,
       });
     }
-    console.log(like, dislike, haha, heart, clap);
+    // console.log(like, dislike, haha, heart, clap);
   };
   const handleClickPost = (e) => {
     if (e.target.id === "Love" && heart.status) {
+      DeleteReaction(postData.postId);
       setHeart({
         ...heart,
         status: !heart.status,
         default: true,
       });
     } else if (e.target.id === "Clap" && clap.status) {
+      DeleteReaction(postData.postId);
+
       setClap({
         ...clap,
         status: !clap.status,
         default: true,
       });
     } else if (e.target.id === "Haha" && haha.status) {
+      DeleteReaction(postData.postId);
+
       setHaha({
         ...haha,
         status: !haha.status,
         default: true,
       });
     } else if (e.target.id === "Dislike" && dislike.status) {
+      DeleteReaction(postData.postId);
+
       setDislike({
         ...dislike,
         status: !dislike.status,
         default: true,
       });
     } else {
+      DeleteReaction(postData.postId);
+
       setLike({
         ...like,
         status: !like.status,
@@ -295,38 +360,38 @@ function Post(props) {
 
           <div className='post-reactions' style={style}>
             <div>
-              <span id='like' onClick={handleClick}>
+              <span id='Like' onClick={handleClick}>
                 <i
-                  id='like'
+                  id='Like'
                   style={{ color: "#408EE5" }}
                   className='fa-solid fa-thumbs-up'
                 ></i>
               </span>
-              <span id='clap' onClick={handleClick}>
+              <span id='Clap' onClick={handleClick}>
                 <i
-                  id='clap'
+                  id='Clap'
                   style={{ color: "#73AD57" }}
                   className='fa-solid fa-hands-clapping'
                 ></i>
               </span>
-              <span id='heart' onClick={handleClick}>
+              <span id='Heart' onClick={handleClick}>
                 <i
-                  id='heart'
+                  id='Heart'
                   style={{ color: "#F7251C" }}
                   className='fa-solid fa-heart'
                 ></i>
               </span>
-              <span id='haha' onClick={handleClick}>
+              <span id='Haha' onClick={handleClick}>
                 <i
-                  id='haha'
+                  id='Haha'
                   style={{ color: "#F8C035" }}
                   className='fa-solid fa-face-laugh-squint'
                 ></i>
               </span>
 
-              <span id='dislike' onClick={handleClick}>
+              <span id='Dislike' onClick={handleClick}>
                 <i
-                  id='dislike'
+                  id='Dislike'
                   style={{ color: "#980202" }}
                   className='fa-solid fa-thumbs-down'
                 ></i>
