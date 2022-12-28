@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
+import Comment from "./Comment";
+import { display } from "@mui/system";
 
 function Post(props) {
-  const { postData } = props;
+  const { postData, userData } = props;
   console.log(postData.postId);
   const [style, setStyle] = useState({ display: "none" });
   const [like, setLike] = useState({
@@ -230,27 +232,45 @@ function Post(props) {
       });
     }
   };
+  const [comment, setComment] = useState({ display: "none" });
+  const handleClickComment = (e) => {
+    if (comment.display === "none") {
+      setComment({ display: "block" });
+    } else {
+      setComment({ display: "none" });
+    }
+  };
+
   return (
     <div className='block'>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: "10%", marginRight: "10px" }}>
+      <div style={{ display: "flex", padding: "10px 15px 0px 15px" }}>
+        <div
+          style={{
+            marginRight:"5px",
+
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <img
-            style={{ width: "100%" }}
-            src='https://avatars.githubusercontent.com/u/55929607?v=4'
+            style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+            src={userData[0].avatar}
             alt=''
           />
         </div>
-        <div>
-          <span> Manh Hung Nguyen</span>
-          <div>Talent Acquisition Executive at Rikkeisoft</div>
-          <div>
+        <div className='post-info-detail'>
+          <div>Manh Hung Nguyen</div>
+          <div className='post-info-detail-job'>
+            Talent Acquisition Executive at Rikkeisoft
+          </div>
+          <div className='post-info-detail-job'>
             <span>
               <i class='fa-solid fa-globe'></i>
             </span>
           </div>
         </div>
       </div>
-      <div style={{ width: "100%" }}>{postData.content}</div>
+      <div style={{ width: "100%", padding: "15px" }}>{postData.content}</div>
       <div style={{ width: "100%" }}>
         {postData.postImg !== null ? (
           <img style={{ width: "100%" }} src={postData.postImg} alt='' />
@@ -329,7 +349,7 @@ function Post(props) {
             </div>
           </div>
         </div>
-        <div className='like-comment-share__btn'>
+        <div className='like-comment-share__btn' onClick={handleClickComment}>
           <span>
             <i className='fa-solid fa-comment'></i> Comment
           </span>
@@ -339,6 +359,19 @@ function Post(props) {
             <i className='fa-solid fa-share'></i> Share
           </span>
         </div>
+      </div>
+      <div style={comment}>
+        <div className='post-user-comment-block'>
+          <div style={{marginRight:"10px", display:"flex",alignItems:"center" }}>
+            <img
+              style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+              src={userData[0].avatar}
+              alt=''
+            />
+          </div>
+          <input className='post-user-comment' placeholder='Add a comment' />
+        </div>
+        <Comment />
       </div>
     </div>
   );

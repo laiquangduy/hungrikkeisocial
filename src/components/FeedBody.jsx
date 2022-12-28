@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 
 import CreatePost from "./CreatePost";
 import Post from "./Post";
+import Cookie from "js-cookie";
 
-function FeedBody() {
+function FeedBody(props) {
+  const { userData } = props;
+  console.log(userData);
   const [postData, setPostData] = useState();
   useEffect(() => {
     // declare the async data fetching function
     const fetchData = async () => {
       // get the data from the api
-      const data = await fetch("http://127.0.0.1:8000/api/v1/posts/116223");
+      const data = await fetch(
+        `http://127.0.0.1:8000/api/v1/posts/${Cookie.get("userID")}`
+      );
       // convert the data to json
       const json = await data.json();
 
@@ -28,10 +33,10 @@ function FeedBody() {
 
   return (
     <div>
-      <CreatePost />
+      <CreatePost userData={userData} />
 
       {postData.map((e, i) => (
-        <Post key={i} postData={e} />
+        <Post key={i} postData={e} userData={userData} />
       ))}
     </div>
   );

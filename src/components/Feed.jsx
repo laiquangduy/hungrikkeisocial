@@ -53,7 +53,7 @@ function Feed() {
         </Grid>
 
         <Grid xs={4}>
-          <FeedBody />
+          <FeedBody userData={userData} />
         </Grid>
 
         <Grid xs={2.5} className='feed-right-block'>

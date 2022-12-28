@@ -12,6 +12,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import Cookies from "js-cookie";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,7 +33,8 @@ const app = initializeApp(firebaseConfig);
 
 const storage = getStorage();
 
-function CreatePost() {
+function CreatePost(props) {
+  const { userData } = props;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -70,10 +72,11 @@ function CreatePost() {
     if (selectedFile === undefined) {
       console.log(e.target.content.value);
       const data = {
-        userId: 116223,
+        userId: Cookies.get("userID"),
         content: e.target.content.value,
         postImg: null,
       };
+      console.log(data);
       fetch("http://127.0.0.1:8000/api/v1/posts", {
         method: "POST",
         headers: {
@@ -132,7 +135,7 @@ function CreatePost() {
           // Upload completed successfully, now we can get the download URL
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             const data = {
-              userId: 116223,
+              userId: Cookies.get("userID"),
               content: e.target.content.value,
               postImg: downloadURL,
             };
@@ -159,8 +162,9 @@ function CreatePost() {
       <div className='post-layout block'>
         <div className='post-header'>
           <img
-            src='https://avatars.githubusercontent.com/u/55929607?v=4'
+            src={userData[0].avatar}
             alt=''
+            className="post-avatar"
           />
           <div className='post-start' onClick={handleOpen}>
             Start a post
@@ -188,7 +192,7 @@ function CreatePost() {
                   </div>
                 </Typography>
                 <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} style={{ width: "100%" }}>
                     <div style={{ display: "flex" }}>
                       <div style={{ width: "50px", marginRight: "10px" }}>
                         <img
@@ -306,7 +310,7 @@ function CreatePost() {
           </div>
         </div>
         <div className='post-footer'>
-          <div>
+          <div className='post-upload-media'>
             <label class='label'>
               <input type='file' required />
               <span>

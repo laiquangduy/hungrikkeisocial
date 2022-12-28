@@ -382,6 +382,13 @@ nav a.active{
   border: 1px solid #E0DFDC;
 
 }
+.block-feed-post{
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #E0DFDC;
+  /* padding: 5px; */
+}
 .feed-ava{
   width: 70px;
   height: 70px;
@@ -572,22 +579,29 @@ label.label input[type="file"] {
 .post-header{
   display: flex;
   width: 100%;
+  padding: 10px 15px 0px 15px;
 }
 
 .post-header img{
-  width: 10%;
-  height:10%;
+  width: 40px;
+  height:40px;
+  border-radius: 50%;
+}
+.post-upload-media{
+  display: flex;
+  justify-content: space-evenly;
 }
 .post-layout{
   background-color: white;
 }
 .post-start{
-  line-height: 300%;
+  line-height: 240%;
   border: 1px solid #ABABAB;
   border-radius: 999px;
-  width: 100%; 
+  width: 90%; 
   cursor: pointer;
-   color: #666666;
+  color: #666666;
+  margin-left: 5px;
 }
 .post-start:hover{
   background-color: #EBEBEB;
@@ -599,7 +613,8 @@ label.label input[type="file"] {
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
-  width:100%;
+  width:500px;
+
   padding:20px;
 }
 .modal-input{
@@ -620,12 +635,14 @@ label.label input[type="file"] {
   display: flex;
   justify-content: space-between;
   border-bottom:1px solid #EBEBEB;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px;
+  padding-bottom: 10px; */
+  padding: 15px;
+  
 }
 .like-comment-share{
   position: relative;
-  margin-top: 5px;
+  margin: 5px 0px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -654,5 +671,25 @@ label.label input[type="file"] {
 .post-reactions span :hover{
   -webkit-transform: scale(1.5);
   transition: 0.2s;
-
+}
+.post-info-detail{
+  display: flex;
+  flex-direction: column;
+}
+.post-info-detail-job{
+  color: #666666;
+  font-size: 13px;
+}
+.post-user-comment-block{
+  display: flex;
+  padding: 10px 15px 0px 15px;
+}
+.post-user-comment{
+  border-radius: 99px;
+  width: 100%;
+  border: 1px solid #B2B2B2;
+  
+}
+.post-user-comment:focus{
+  outline:1px solid #666666;
 }
