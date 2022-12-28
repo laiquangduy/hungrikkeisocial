@@ -214,7 +214,11 @@ function CreatePost(props) {
                     />
                     {selectedFile && (
                       <img
-                        style={{ objectFit: "cover", width: "100%" }}
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          maxHeight: "400px",
+                        }}
                         src={preview}
                       />
                     )}

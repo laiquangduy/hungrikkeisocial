@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import NavigateBar from "./components/NavigateBar";
 import Jobs from "./components/Jobs";
 import Feed from "./components/Feed";
+import Notifications from "./components/Notifications";
 import Cookies from "js-cookie";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PreventAuth from "./utils/PreventAuth";
@@ -54,7 +55,12 @@ function App() {
             }
           />
           <Route path='/messaging' />
-          <Route path='/notifications' />
+          <Route path='/notifications' element={<>
+                <NavigateBar />
+                <div className='container-page'>
+                  <Notifications />
+                </div>
+              </>}/>
         </Route>
         <Route element={<PreventAuth />}>
           <Route path='/auth/register' element={<SignUp />} />

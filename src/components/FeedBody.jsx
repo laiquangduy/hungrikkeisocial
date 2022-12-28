@@ -30,12 +30,12 @@ function FeedBody(props) {
   if (!postData) {
     return <div>loading....</div>;
   }
-
+  // console.log(postData);
   return (
     <div>
       <CreatePost userData={userData} />
 
-      {postData.map((e, i) => (
+      {postData.posts.map((e, i) => (
         <Post key={i} postData={e} userData={userData} />
       ))}
     </div>

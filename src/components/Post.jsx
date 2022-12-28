@@ -7,14 +7,10 @@ import { set } from "react-hook-form";
 import { SendReaction } from "../helpers/SendReaction";
 import Cookies from "js-cookie";
 import { DeleteReaction } from "../helpers/DeleteReaction";
+
 function Post(props) {
   const { postData, userData } = props;
-  console.log(postData.postId);
-
-
-function Post(props) {
-  const { postData } = props;
-  // console.log(postData);
+  console.log(postData);
   const [style, setStyle] = useState({ display: "none" });
   const [like, setLike] = useState({
     status: false,
@@ -313,7 +309,7 @@ function Post(props) {
       <div style={{ display: "flex", padding: "10px 15px 0px 15px" }}>
         <div
           style={{
-            marginRight:"5px",
+            marginRight: "5px",
 
             display: "flex",
             alignItems: "center",
@@ -437,7 +433,13 @@ function Post(props) {
       </div>
       <div style={comment}>
         <div className='post-user-comment-block'>
-          <div style={{marginRight:"10px", display:"flex",alignItems:"center" }}>
+          <div
+            style={{
+              marginRight: "10px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <img
               style={{ width: "40px", height: "40px", borderRadius: "50%" }}
               src={userData[0].avatar}
@@ -450,7 +452,6 @@ function Post(props) {
       </div>
     </div>
   );
-}
 }
 
 export default Post;
