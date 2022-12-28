@@ -161,11 +161,7 @@ function CreatePost(props) {
     <>
       <div className='post-layout block'>
         <div className='post-header'>
-          <img
-            src={userData[0].avatar}
-            alt=''
-            className="post-avatar"
-          />
+          <img src={userData[0].avatar} alt='' className='post-avatar' />
           <div className='post-start' onClick={handleOpen}>
             Start a post
           </div>

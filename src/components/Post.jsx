@@ -2,10 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@mui/material";
 import Comment from "./Comment";
 import { display } from "@mui/system";
-
+//Hook delete reaction
+import { set } from "react-hook-form";
+import { SendReaction } from "../helpers/SendReaction";
+import Cookies from "js-cookie";
+import { DeleteReaction } from "../helpers/DeleteReaction";
 function Post(props) {
   const { postData, userData } = props;
   console.log(postData.postId);
+
+
+function Post(props) {
+  const { postData } = props;
+  // console.log(postData);
   const [style, setStyle] = useState({ display: "none" });
   const [like, setLike] = useState({
     status: false,
@@ -44,191 +53,249 @@ function Post(props) {
     default: false,
   });
   const reactState = [like, clap, heart, haha, dislike];
+  useEffect(() => {
+    if (postData.defaultReaction === "like") {
+      setLike({
+        ...like,
+        status: true,
+      });
+    } else if (postData.defaultReaction === "haha") {
+      setHaha({
+        ...haha,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "love") {
+      setHeart({
+        ...heart,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "clap") {
+      setClap({
+        ...clap,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    } else if (postData.defaultReaction === "dislike") {
+      setDislike({
+        ...dislike,
+        status: true,
+      });
+      setLike({
+        ...like,
+        default: false,
+      });
+    }
+  }, []);
+
   const handleClick = (e) => {
-    console.log(e.target.id);
-    if (e.target.id === "like") {
+    if (e.target.id === "Like" && !like.status) {
+      SendReaction(postData.postId, "like", Cookies.get("userID"));
       setLike({
+        ...like,
         status: true,
-        color: "#408EE5",
         default: true,
-        icon: "fa-solid fa-thumbs-up",
-        name: "Like",
       });
       setClap({
+        ...clap,
         status: false,
-        color: "#73AD57",
         default: false,
-        icon: "fa-solid fa-hands-clapping",
-        name: "Clap",
       });
       setHeart({
+        ...heart,
         status: false,
-        color: "#F7251C",
         default: false,
-        icon: "fa-solid fa-heart",
-        name: "Love",
       });
       setHaha({
+        ...haha,
         status: false,
-        color: "#F8C035",
         default: false,
-        icon: "fa-solid fa-face-laugh-squint",
-        name: "Haha",
       });
       setDislike({
+        ...dislike,
         status: false,
-        color: "#980202",
         default: false,
-        icon: "fa-solid fa-thumbs-down",
-        name: "Dislike",
-        e,
       });
-    } else if (e.target.id === "clap") {
+    } else if (e.target.id === "Clap" && !clap.status) {
+      SendReaction(postData.postId, "clap", Cookies.get("userID"));
+
       setLike({
+        ...like,
         status: false,
-        color: "#408EE5",
         default: false,
-        icon: "fa-solid fa-thumbs-up",
-        name: "Like",
       });
       setClap({
+        ...clap,
         status: true,
-        color: "#73AD57",
         default: true,
-        icon: "fa-solid fa-hands-clapping",
-        name: "Clap",
       });
       setHeart({
+        ...heart,
         status: false,
-        color: "#F7251C",
         default: false,
-        icon: "fa-solid fa-heart",
-        name: "Love",
       });
       setHaha({
+        ...haha,
         status: false,
-        color: "#F8C035",
         default: false,
-        icon: "fa-solid fa-face-laugh-squint",
-        name: "Haha",
       });
       setDislike({
+        ...dislike,
         status: false,
-        color: "#980202",
         default: false,
-        icon: "fa-solid fa-thumbs-down",
-        name: "Dislike",
-        e,
       });
-    } else if (e.target.id === "heart") {
+    } else if (e.target.id === "Heart" && !heart.status) {
+      SendReaction(postData.postId, "love", Cookies.get("userID"));
+
       setLike({
+        ...like,
         status: false,
-        color: "#408EE5",
         default: false,
-        icon: "fa-solid fa-thumbs-up",
-        name: "Like",
       });
       setClap({
+        ...clap,
         status: false,
-        color: "#73AD57",
         default: false,
-        icon: "fa-solid fa-hands-clapping",
-        name: "Clap",
       });
       setHeart({
+        ...heart,
         status: true,
-        color: "#F7251C",
         default: true,
-        icon: "fa-solid fa-heart",
-        name: "Love",
       });
       setHaha({
+        ...haha,
         status: false,
-        color: "#F8C035",
         default: false,
-        icon: "fa-solid fa-face-laugh-squint",
-        name: "Haha",
       });
       setDislike({
+        ...dislike,
         status: false,
-        color: "#980202",
         default: false,
-        icon: "fa-solid fa-thumbs-down",
-        name: "Dislike",
-        e,
       });
-    } else if (e.target.id === "haha") {
+    } else if (e.target.id === "Haha" && !haha.status) {
+      SendReaction(postData.postId, "haha", Cookies.get("userID"));
+
       setLike({
+        ...like,
         status: false,
-        color: "#408EE5",
         default: false,
-        icon: "fa-solid fa-thumbs-up",
-        name: "Like",
       });
       setClap({
+        ...clap,
         status: false,
-        color: "#73AD57",
         default: false,
-        icon: "fa-solid fa-hands-clapping",
-        name: "Clap",
       });
       setHeart({
+        ...heart,
         status: false,
-        color: "#F7251C",
         default: false,
-        icon: "fa-solid fa-heart",
-        name: "Love",
       });
       setHaha({
+        ...haha,
         status: true,
-        color: "#F8C035",
         default: true,
-        icon: "fa-solid fa-face-laugh-squint",
-        name: "Haha",
       });
       setDislike({
+        ...dislike,
         status: false,
-        color: "#980202",
         default: false,
-        icon: "fa-solid fa-thumbs-down",
-        name: "Dislike",
-        e,
       });
-    } else if (e.target.id === "dislike") {
+    } else if (e.target.id === "Dislike" && !dislike.status) {
+      SendReaction(postData.postId, "dislike", Cookies.get("userID"));
+
       setLike({
+        ...like,
         status: false,
-        color: "#408EE5",
         default: false,
-        icon: "fa-solid fa-thumbs-up",
-        name: "Like",
       });
       setClap({
+        ...clap,
         status: false,
-        color: "#73AD57",
         default: false,
-        icon: "fa-solid fa-hands-clapping",
-        name: "Clap",
       });
       setHeart({
+        ...heart,
         status: false,
-        color: "#F7251C",
         default: false,
-        icon: "fa-solid fa-heart",
-        name: "Love",
       });
       setHaha({
+        ...haha,
         status: false,
-        color: "#F8C035",
         default: false,
-        icon: "fa-solid fa-face-laugh-squint",
-        name: "Haha",
       });
       setDislike({
+        ...dislike,
         status: true,
-        color: "#980202",
         default: true,
-        icon: "fa-solid fa-thumbs-down",
-        name: "Dislike",
+      });
+    }
+    // console.log(like, dislike, haha, heart, clap);
+  };
+  const handleClickPost = (e) => {
+    if (e.target.id === "Love" && heart.status) {
+      DeleteReaction(postData.postId);
+      setHeart({
+        ...heart,
+        status: !heart.status,
+        default: true,
+      });
+    } else if (e.target.id === "Clap" && clap.status) {
+      DeleteReaction(postData.postId);
+
+      setClap({
+        ...clap,
+        status: !clap.status,
+        default: true,
+      });
+    } else if (e.target.id === "Haha" && haha.status) {
+      DeleteReaction(postData.postId);
+
+      setHaha({
+        ...haha,
+        status: !haha.status,
+        default: true,
+      });
+    } else if (e.target.id === "Dislike" && dislike.status) {
+      DeleteReaction(postData.postId);
+
+      setDislike({
+        ...dislike,
+        status: !dislike.status,
+        default: true,
+      });
+    } else {
+      DeleteReaction(postData.postId);
+
+      setLike({
+        ...like,
+        status: !like.status,
+        default: true,
+      });
+      setClap({
+        ...clap,
+        default: false,
+      });
+      setHeart({
+        ...heart,
+        default: false,
+      });
+      setHaha({
+        ...haha,
+        default: false,
+      });
+      setDislike({
+        ...dislike,
+        default: false,
       });
     }
   };
@@ -295,14 +362,22 @@ function Post(props) {
           {reactState.map((e, i) => {
             if (e.status) {
               return (
-                <span key={i} style={{ color: e.color }}>
-                  <i className={e.icon}></i> {e.name}
+                <span
+                  onClick={handleClickPost}
+                  id={e.name}
+                  style={{ color: e.color }}
+                >
+                  <i id={e.name} className={e.icon}></i> {e.name}
                 </span>
               );
             } else if (e.default) {
               return (
-                <span key={i} style={{ color: "#666666" }}>
-                  <i className='fa-solid fa-thumbs-up'></i> Like
+                <span
+                  onClick={handleClickPost}
+                  id={e.name}
+                  style={{ color: "#666666" }}
+                >
+                  <i id={e.name} className='fa-solid fa-thumbs-up'></i> Like
                 </span>
               );
             }
@@ -310,38 +385,38 @@ function Post(props) {
 
           <div className='post-reactions' style={style}>
             <div>
-              <span id='like' onClick={handleClick}>
+              <span id='Like' onClick={handleClick}>
                 <i
-                  id='like'
+                  id='Like'
                   style={{ color: "#408EE5" }}
                   className='fa-solid fa-thumbs-up'
                 ></i>
               </span>
-              <span id='clap' onClick={handleClick}>
+              <span id='Clap' onClick={handleClick}>
                 <i
-                  id='clap'
+                  id='Clap'
                   style={{ color: "#73AD57" }}
                   className='fa-solid fa-hands-clapping'
                 ></i>
               </span>
-              <span id='heart' onClick={handleClick}>
+              <span id='Heart' onClick={handleClick}>
                 <i
-                  id='heart'
+                  id='Heart'
                   style={{ color: "#F7251C" }}
                   className='fa-solid fa-heart'
                 ></i>
               </span>
-              <span id='haha' onClick={handleClick}>
+              <span id='Haha' onClick={handleClick}>
                 <i
-                  id='haha'
+                  id='Haha'
                   style={{ color: "#F8C035" }}
                   className='fa-solid fa-face-laugh-squint'
                 ></i>
               </span>
 
-              <span id='dislike' onClick={handleClick}>
+              <span id='Dislike' onClick={handleClick}>
                 <i
-                  id='dislike'
+                  id='Dislike'
                   style={{ color: "#980202" }}
                   className='fa-solid fa-thumbs-down'
                 ></i>
@@ -375,6 +450,7 @@ function Post(props) {
       </div>
     </div>
   );
+}
 }
 
 export default Post;
