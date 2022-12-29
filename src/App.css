@@ -685,9 +685,9 @@ label.label input[type="file"] {
 }
 .post-user-comment{
   border-radius: 99px;
-  width: 100%;
+  width: 90%;
   border: 1px solid #B2B2B2;
-  
+  height:100%;
 }
 .post-user-comment:focus{
   outline:1px solid #666666;

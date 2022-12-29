@@ -6,7 +6,7 @@ import Cookie from "js-cookie";
 
 function FeedBody(props) {
   const { userData } = props;
-  console.log(userData);
+
   const [postData, setPostData] = useState();
   useEffect(() => {
     // declare the async data fetching function
@@ -26,7 +26,7 @@ function FeedBody(props) {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, []);
+  }, [postData]);
   if (!postData) {
     return <div>loading....</div>;
   }

@@ -11,6 +11,23 @@ import { DeleteReaction } from "../helpers/DeleteReaction";
 function Post(props) {
   const { postData, userData } = props;
   console.log(postData);
+
+  const [postComment, setPostComment] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(
+        `http://127.0.0.1:8000/api/v1/comments/${postData.postId}`
+      );
+      const json = await data.json().catch((err) => {
+        console.log(err);
+      });
+      // console.log(json);
+      setPostComment(json);
+    };
+
+    fetchData();
+  }, [postData]);
+  // console.log(postData);
   const [style, setStyle] = useState({ display: "none" });
   const [like, setLike] = useState({
     status: false,
@@ -239,14 +256,14 @@ function Post(props) {
   };
   const handleClickPost = (e) => {
     if (e.target.id === "Love" && heart.status) {
-      DeleteReaction(postData.postId);
+      DeleteReaction(postData.postId, "love");
       setHeart({
         ...heart,
         status: !heart.status,
         default: true,
       });
     } else if (e.target.id === "Clap" && clap.status) {
-      DeleteReaction(postData.postId);
+      DeleteReaction(postData.postId, "clap");
 
       setClap({
         ...clap,
@@ -254,7 +271,7 @@ function Post(props) {
         default: true,
       });
     } else if (e.target.id === "Haha" && haha.status) {
-      DeleteReaction(postData.postId);
+      DeleteReaction(postData.postId, "haha");
 
       setHaha({
         ...haha,
@@ -262,19 +279,43 @@ function Post(props) {
         default: true,
       });
     } else if (e.target.id === "Dislike" && dislike.status) {
-      DeleteReaction(postData.postId);
+      DeleteReaction(postData.postId, "dislike");
 
       setDislike({
         ...dislike,
         status: !dislike.status,
         default: true,
       });
+    } else if (e.target.id === "Like" && like.status) {
+      DeleteReaction(postData.postId, "like");
+      console.log("turn off");
+      setLike({
+        ...like,
+        status: false,
+        default: true,
+      });
+      setClap({
+        ...clap,
+        default: false,
+      });
+      setHeart({
+        ...heart,
+        default: false,
+      });
+      setHaha({
+        ...haha,
+        default: false,
+      });
+      setDislike({
+        ...dislike,
+        default: false,
+      });
     } else {
-      DeleteReaction(postData.postId);
+      SendReaction(postData.postId, "like", Cookies.get("userID"));
 
       setLike({
         ...like,
-        status: !like.status,
+        status: true,
         default: true,
       });
       setClap({
@@ -303,6 +344,39 @@ function Post(props) {
       setComment({ display: "none" });
     }
   };
+  const [inputComment, setInputComment] = useState("");
+  const handleChange = (e) => {
+    setInputComment(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    if (inputComment === "") {
+      console.log("invalid");
+    }
+    setInputComment("");
+    e.preventDefault();
+
+    const data = {
+      postID: postData.postId,
+      content: inputComment,
+      commentOf: Cookies.get("userID"),
+    };
+    fetch("http://127.0.0.1:8000/api/v1/comments/addComment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  if (!postComment) {
+    return <div>LOADING</div>;
+  }
 
   return (
     <div className='block'>
@@ -322,9 +396,9 @@ function Post(props) {
           />
         </div>
         <div className='post-info-detail'>
-          <div>Manh Hung Nguyen</div>
+          <div>{userData[0].fullName}</div>
           <div className='post-info-detail-job'>
-            Talent Acquisition Executive at Rikkeisoft
+            {userData[0].jobs} at {userData[0].company}
           </div>
           <div className='post-info-detail-job'>
             <span>
@@ -342,8 +416,39 @@ function Post(props) {
         )}
       </div>
       <div className='display-like-comment'>
-        <span>5 likes</span>
-        <span>10 comments</span>
+        {postData.totalReactions !== 0 ? (
+          <span>
+            {postData.totalReactions}
+            <span className='mostReactions'>
+              {postData.top3reactions.map((e) => {
+                // return (
+                //   <span style={{ color: e.color }}>
+                //     <i className={e.type}></i>
+                //   </span>
+                // );
+                if (e.total === 0) {
+                  return <span></span>;
+                } else {
+                  return (
+                    <span style={{ color: e.color }}>
+                      <i className={e.type}></i>
+                    </span>
+                  );
+                }
+              })}
+            </span>
+          </span>
+        ) : (
+          <span></span>
+        )}
+        {postData.totalComments !== 0 ? (
+          <span>
+            {postData.totalComments} comment
+            {postData.totalComments !== 1 ? "s" : ""}
+          </span>
+        ) : (
+          <span></span>
+        )}
       </div>
       <div className='like-comment-share'>
         <div
@@ -446,9 +551,17 @@ function Post(props) {
               alt=''
             />
           </div>
-          <input className='post-user-comment' placeholder='Add a comment' />
+          <form onSubmit={handleSubmit} action='' style={{ width: "100%" }}>
+            <input
+              onChange={handleChange}
+              value={inputComment}
+              className='post-user-comment'
+              placeholder='Add a comment'
+              name='comment'
+            />
+          </form>
         </div>
-        <Comment />
+        <Comment comments={postComment.data} />
       </div>
     </div>
   );

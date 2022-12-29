@@ -1,9 +1,15 @@
-export const DeleteReaction = async (postId) => {
+export const DeleteReaction = async (postId, previousReaction) => {
   try {
     const response = await fetch(
       `http://127.0.0.1:8000/api/v1/posts/deleteReaction/${postId}`,
       {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          previousReaction,
+        }),
       }
     );
     const data = await response.json();
