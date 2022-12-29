@@ -26,11 +26,11 @@ function FeedBody(props) {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, [postData]);
+  }, []);
   if (!postData) {
     return <div>loading....</div>;
   }
-  // console.log(postData);
+  console.log(postData);
   return (
     <div>
       <CreatePost userData={userData} />

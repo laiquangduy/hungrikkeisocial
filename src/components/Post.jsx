@@ -391,14 +391,14 @@ function Post(props) {
         >
           <img
             style={{ width: "40px", height: "40px", borderRadius: "50%" }}
-            src={userData[0].avatar}
+            src={postData.userData.avatar}
             alt=''
           />
         </div>
         <div className='post-info-detail'>
-          <div>{userData[0].fullName}</div>
+          <div>{postData.userData.fullName}</div>
           <div className='post-info-detail-job'>
-            {userData[0].jobs} at {userData[0].company}
+            {postData.userData.job} at {postData.userData.company}
           </div>
           <div className='post-info-detail-job'>
             <span>

@@ -67,6 +67,7 @@ function Login() {
                     </Alert>
                   );
                 } else {
+                  console.log(data);
                   setCookie("userID", data.userID, { path: "/" });
                   setValidateUser(
                     <Alert variant='filled' severity='success'>
