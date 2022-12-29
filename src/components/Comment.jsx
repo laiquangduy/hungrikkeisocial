@@ -29,7 +29,7 @@ function Comment() {
               {" — I'll be in your neighborhood doing errands this…"}
             </React.Fragment>
           }
-        />
+        /><span>Like</span>
       </ListItem>
       <Divider variant="inset" component="li" />
       <ListItem alignItems="flex-start">

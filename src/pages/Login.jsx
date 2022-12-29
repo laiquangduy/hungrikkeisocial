@@ -58,7 +58,8 @@ function Login() {
               .then((data) => {
                 if (
                   data.message === "Wrong password" ||
-                  data.message === "User is not exist"
+                  data.message === "User is not exist" ||
+                  data.message === "Please verified your email"
                 ) {
                   setValidateUser(
                     <Alert variant='filled' severity='error'>
