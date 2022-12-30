@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import CreatePost from "./CreatePost";
 import Post from "./Post";
 import Cookie from "js-cookie";
+import LoadingPost from "./LoadingPost";
 
 function FeedBody(props) {
   const { userData } = props;
@@ -17,7 +18,7 @@ function FeedBody(props) {
       );
       // convert the data to json
       const json = await data.json();
-
+      console.log(json);
       // set state with the result
       setPostData(json);
     };
@@ -28,16 +29,18 @@ function FeedBody(props) {
       .catch(console.error);
   }, []);
   if (!postData) {
-    return <div>loading....</div>;
+    return <LoadingPost />;
   }
   console.log(postData);
   return (
     <div>
       <CreatePost userData={userData} />
-
-      {postData.posts.map((e, i) => (
-        <Post key={i} postData={e} userData={userData} />
-      ))}
+      {postData.posts
+        .slice(0)
+        .reverse(0)
+        .map((e, i) => (
+          <Post key={i} postData={e} userData={userData} />
+        ))}
     </div>
   );
 }

@@ -7,10 +7,12 @@ import { set } from "react-hook-form";
 import { SendReaction } from "../helpers/SendReaction";
 import Cookies from "js-cookie";
 import { DeleteReaction } from "../helpers/DeleteReaction";
+import { formatDate } from "../helpers/ConvertDate";
+import { PostAddTwoTone } from "@mui/icons-material";
+import LoadingPost from "./LoadingPost";
 
 function Post(props) {
   const { postData, userData } = props;
-  console.log(postData);
 
   const [postComment, setPostComment] = useState();
   useEffect(() => {
@@ -375,7 +377,49 @@ function Post(props) {
   };
 
   if (!postComment) {
-    return <div>LOADING</div>;
+    return <LoadingPost />;
+  }
+  // console.log(postData.createAt.split(" "));
+  //old
+  console.log(
+    postData.createAt.split(" ")[0].split("-"), //ngay thang
+    postData.createAt.split(" ")[1].split(":") // gio
+  );
+  //now
+  console.log(new Date().toString().split(" ")[4].split(":")); //gio
+  console.log(formatDate(new Date()).split("-")); // ngay thang
+  let passedTime = 0;
+  if (postData.createAt) {
+    let dateDayOld = Number(postData.createAt.split(" ")[0].split("-")[2]);
+    let dateHourOld = Number(postData.createAt.split(" ")[1].split(":")[0]);
+    let dateMinuteOld = Number(postData.createAt.split(" ")[1].split(":")[1]);
+    let dateSecondOld = Number(postData.createAt.split(" ")[1].split(":")[2]);
+
+    let dateDayNow = Number(formatDate(new Date()).split("-")[2]);
+    let dateHourNow = Number(new Date().toString().split(" ")[4].split(":")[0]);
+    let dateMinuteNow = Number(
+      new Date().toString().split(" ")[4].split(":")[1]
+    );
+    let dateSecondNow = Number(
+      new Date().toString().split(" ")[4].split(":")[2]
+    );
+    if (dateDayNow > dateDayOld) {
+      passedTime = `${dateDayNow - dateDayOld}d`;
+    } else if (dateDayNow === dateDayOld) {
+      if (dateHourNow > dateHourOld) {
+        passedTime = `${dateHourNow - dateHourOld}h`;
+      } else if (dateHourNow === dateHourOld) {
+        if (dateMinuteNow > dateMinuteOld)
+          passedTime = `${dateMinuteNow - dateMinuteOld}m`;
+        else if (dateMinuteNow === dateMinuteOld) {
+          if (dateSecondNow > dateSecondOld) {
+            passedTime = `${dateSecondNow - dateSecondOld}s`;
+          } else if (dateSecondNow === dateSecondOld) {
+            passedTime = "Just now";
+          }
+        }
+      }
+    }
   }
 
   return (
@@ -402,7 +446,7 @@ function Post(props) {
           </div>
           <div className='post-info-detail-job'>
             <span>
-              <i class='fa-solid fa-globe'></i>
+              {passedTime} • <i class='fa-solid fa-globe'></i>
             </span>
           </div>
         </div>
