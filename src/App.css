@@ -7,6 +7,7 @@
 body{
   background-color: #F3F2EF;
   font-family: var(--artdeco-reset-typography-font-family-sans);
+  min-width: 300px;
 }
 
 /* Managenetwork */
@@ -123,7 +124,6 @@ body{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 10px;
   background-color: #E2F0FE;
   padding: 10px;
   align-items: center;
@@ -209,6 +209,12 @@ body{
 .css-1coxmi8-MuiList-root{
   padding-top: 3px !important;
   padding-bottom: 5px !important;
+}
+
+.t-friendscanconnect{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 /* Avatar */

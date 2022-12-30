@@ -1,22 +1,16 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import img1 from "../../img/AAYQAgTPAAgAAQAAAAAAADVuOvKzTF-3RD6j-qFPqhubBQ.png";
 import Avatar1 from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import SettingsInputAntennaIcon from "@mui/icons-material/SettingsInputAntenna";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Divider } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
 export default function Peopletcn() {
@@ -26,28 +20,17 @@ export default function Peopletcn() {
     setOpen(!open);
   };
 
-  const bull = (
-    <Box
-      component='span'
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    >
-      •
-    </Box>
-  );
+  // const bull = <Box>•</Box>;
 
   const card = (
     <React.Fragment>
       <CardContent>
         <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-          <a href='#' className='t-answer'>
-            Edit public profile & URL
-          </a>
+          <a className='t-answer'>Edit public profile & URL</a>
         </Typography>
         <Divider style={{ maxWidth: 800, fontSize: 20 }} />
         <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-          <a href='#' className='t-answer'>
-            Add profile in another language
-          </a>
+          <a className='t-answer'>Add profile in another language</a>
         </Typography>
       </CardContent>
     </React.Fragment>
@@ -236,16 +219,52 @@ export default function Peopletcn() {
 
   return (
     <div style={{ marginLeft: "15px" }}>
-      <Box sx={{ maxWidth: 324, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 324,
+          marginTop: 1,
+        }}
+      >
         <Card>{card}</Card>
       </Box>
-      <Box sx={{ maxWidth: 324, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 324,
+          marginTop: 1,
+        }}
+      >
         <Card>{img}</Card>
       </Box>
-      <Box sx={{ maxWidth: 324, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 324,
+          marginTop: 1,
+        }}
+      >
         <Card>{card1}</Card>
       </Box>
-      <Box sx={{ maxWidth: 324, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 324,
+          marginTop: 1,
+        }}
+      >
         <Card>{card2}</Card>
       </Box>
     </div>

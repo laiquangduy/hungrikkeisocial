@@ -13,15 +13,8 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import SettingsInputAntennaIcon from "@mui/icons-material/SettingsInputAntenna";
 import Divider from "@mui/material/Divider";
 
-export default function Avatar() {
-  const bull = (
-    <Box
-      component='span'
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    >
-      •
-    </Box>
-  );
+function Avatar() {
+  // const bull = <Box>•</Box>;
 
   const card = (
     <React.Fragment>
@@ -146,7 +139,7 @@ export default function Avatar() {
         </div>
         <CardContent>
           <Typography gutterBottom variant='h5' component='div'>
-            <h1 className='name'>Lizard</h1>
+            <h1 className='name'>Đức Thịnh</h1>
             <div className='companyjob'>Coder at Rikkei</div>
           </Typography>
 
@@ -178,15 +171,44 @@ export default function Avatar() {
           </Button>
         </CardActions>
       </Card>
-      <Box sx={{ maxWidth: 784, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 784,
+          marginTop: 1,
+        }}
+      >
         <Card>{card}</Card>
       </Box>
-      <Box sx={{ maxWidth: 784, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 784,
+          marginTop: 1,
+        }}
+      >
         <Card>{card1}</Card>
       </Box>
-      <Box sx={{ maxWidth: 784, marginTop: 1 }}>
+      <Box
+        component='span'
+        sx={{
+          display: "inline-block",
+          mx: "2px",
+          transform: "scale(0.8)",
+          maxWidth: 784,
+          marginTop: 1,
+        }}
+      >
         <Card>{card2}</Card>
       </Box>
     </div>
   );
 }
+
+export default Avatar;
