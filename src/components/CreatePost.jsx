@@ -85,7 +85,11 @@ function CreatePost(props) {
         body: JSON.stringify(data),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+          console.log(data);
+          setOpen(false);
+        })
+
         .catch((err) => console.log(err));
     } else {
       const metadata = {
@@ -153,9 +157,6 @@ function CreatePost(props) {
         }
       );
     }
-    // const file = e.target.img.files[0];
-    // // Create the file metadata
-    // /** @type {any} */
   };
   return (
     <>
@@ -182,7 +183,12 @@ function CreatePost(props) {
                     }}
                   >
                     <span>Create a post</span>{" "}
-                    <span>
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
+                    >
                       <i className='fa-solid fa-xmark'></i>
                     </span>
                   </div>
@@ -297,6 +303,7 @@ function CreatePost(props) {
                             backgroundColor: "#1866BE",
                             color: "white",
                             borderRadius: "999px",
+                            cursor: "pointer",
                           }}
                         >
                           Post
