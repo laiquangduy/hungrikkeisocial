@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./App.css";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -11,20 +10,13 @@ import Feed from "./components/Feed";
 import Cookies from "js-cookie";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PreventAuth from "./utils/PreventAuth";
+import Tcncontainer from "./components/tcn/Tcncontainer";
 
 // import SignIn from './components/Sign
-=======
-import logo from "./logo.svg";
-import "./App.css";
-import CreatePost from "./components/CreatePost";
-import Post from "./components/Post";
-import FeedBody from "./components/FeedBody";
->>>>>>> post
 
 function App() {
   return (
     <>
-<<<<<<< HEAD
       <Routes>
         {/* <Route path='/' element={<Login />} /> */}
         <Route element={<PrivateRoutes />}>
@@ -69,6 +61,7 @@ function App() {
           <Route path='/auth/register' element={<SignUp />} />
           <Route path='/auth/login' element={<Login />} />
         </Route>
+        <Route path='/feed/:id' element={<Tcncontainer />} />
       </Routes>
 
       {/* <div className='container-page'>
@@ -80,9 +73,6 @@ function App() {
           <Route path='/notifications' />
         </Routes>
       </div> */}
-=======
-      <FeedBody />
->>>>>>> post
     </>
   );
 }
