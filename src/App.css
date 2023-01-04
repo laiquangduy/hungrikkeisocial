@@ -285,6 +285,7 @@ nav a.active{
 .container-page{
   margin-top: 70px;
   
+
 }
 
 .btn-jobs-post{
@@ -480,14 +481,14 @@ background-color:#EBEBEB;
   flex-wrap: wrap;
 }
 
-.grid-block-left{
+/* .grid-block-left{
   
   
 }
 .grid-block-right{
  
   
-  }
+  } */
 
 .loading{
   position: absolute;
@@ -601,6 +602,7 @@ label.label input[type="file"] {
   cursor: pointer;
   color: #666666;
   margin-left: 5px;
+  padding-left: 8px;
 }
 .post-start:hover{
   background-color: #EBEBEB;
@@ -727,6 +729,7 @@ label.label input[type="file"] {
   width: 90%;
   border: 1px solid #B2B2B2;
   height:100%;
+  padding: 8px;
 }
 .post-user-comment:focus{
   outline:1px solid #666666;
@@ -900,3 +903,53 @@ Set position cho các lớp mặt nạ để đè lên background gradient */
     left: 300px;
     top: 88px;
 }
+
+/* Thinh */
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  position: absolute;
+  border: 1px solid #EEF3F8;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}
+
+
+.search-inner {
+  display: flex;
+}
+
+.css-h4y409-MuiList-root {
+  list-style: none;
+  margin: 0;
+  padding: 0 !important;
+  position: relative;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+  padding-left: 3px !important;
+  padding-right: 0px !important;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.css-cveggr-MuiListItemIcon-root{
+  min-width: 0px !important;
+}
+
+.css-10hburv-MuiTypography-root {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+

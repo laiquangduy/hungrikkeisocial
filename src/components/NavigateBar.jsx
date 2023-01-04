@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  createContext,
+  useContext,
+} from "react";
 import { Link, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import GroupIcon from "@mui/icons-material/Group";
@@ -8,6 +14,14 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Grid from "@mui/material/Unstable_Grid2";
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import Avatar from "@mui/material/Avatar";
 
 import { styled, alpha } from "@mui/material/styles";
 
@@ -62,9 +76,23 @@ const StyledMenu = styled((props) => (
 }));
 function NavigateBar() {
   const [userData, setUserData] = useState([]);
+  const [userDataAll, setUserDataAll] = useState([]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [value, setValue] = useState("");
+
+  const onChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const onSearch = (searchTerm) => {
+    setValue(searchTerm);
+    // our api to fetch the search result
+    console.log("search ", searchTerm);
+  };
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -72,9 +100,9 @@ function NavigateBar() {
     setAnchorEl(null);
   };
   const handleSignout = () => {
-    Cookies.remove('userID');
-    window.location.href="http://localhost:3000/auth/login"
-  }
+    Cookies.remove("userID");
+    window.location.href = "http://localhost:3000/auth/login";
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -87,6 +115,19 @@ function NavigateBar() {
     };
     fetchData();
   }, []);
+  console.log(userData);
+
+  useEffect(() => {
+    const fetchDataAll = async () => {
+      const dataAll = await fetch(`http://127.0.0.1:8000/api/v1/users`);
+      const json = await dataAll.json();
+
+      setUserDataAll(json);
+      console.log(json);
+    };
+    fetchDataAll();
+  }, []);
+
   if (userData.length === 0) {
     return null;
   }
@@ -105,9 +146,80 @@ function NavigateBar() {
                   alt=''
                 />
               </Link>
-              <div className='container-search'>
-                <SearchIcon sx={{ fontSize: "30px" }} />
-                <input placeholder='Search' className='search-input' />
+              <div>
+                <div className='container-search'>
+                  <SearchIcon
+                    onClick={() => onSearch(value)}
+                    sx={{ fontSize: "30px" }}
+                  />
+                  <input
+                    type='text'
+                    value={value}
+                    onChange={onChange}
+                    placeholder='Search'
+                    className='search-input'
+                  />
+                </div>
+                <div className='dropdown'>
+                  {/* <Link to={`/feed/${userData.id}`}> */}
+                  {userDataAll
+                    .filter((item) => {
+                      const searchTerm = value.toLowerCase();
+                      const fullName = item.fullName.toLowerCase();
+
+                      return searchTerm && fullName.startsWith(searchTerm);
+                    })
+                    .map((item) => (
+                      <List
+                        onClick={() => onSearch(item.fullName)}
+                        className='dropdown-row'
+                        key={item.fullName}
+                      >
+                        <Link to={`/user/${item.id}`}>
+                          <ListItem disablePadding>
+                            <ListItemButton>
+                              <ListItemIcon>
+                                <SearchIcon />
+                              </ListItemIcon>
+                              <ListItemText primary={item.fullName} />
+                              <FiberManualRecordIcon
+                                style={{ color: "#666666" }}
+                                sx={{ fontSize: "5px" }}
+                              />
+                              <ListItemText
+                                style={{ color: "#666666" }}
+                                sx={{ fontSize: "5px" }}
+                                primary={item.jobs}
+                              />
+                              <FiberManualRecordIcon
+                                style={{ color: "#666666" }}
+                                sx={{ fontSize: "5px" }}
+                              />
+                              <ListItemText
+                                style={{
+                                  color: "#666666",
+                                  marginRight: "60px",
+                                }}
+                                sx={{ fontSize: "5px" }}
+                                primary={item.company}
+                              />
+                              <ListItemText
+                                primary={
+                                  <Avatar
+                                    style={{ marginRight: "5px" }}
+                                    alt={item.fullName}
+                                    sx={{ width: 30, height: 30 }}
+                                    src={item.avatar}
+                                  />
+                                }
+                              />
+                            </ListItemButton>
+                          </ListItem>
+                        </Link>
+                      </List>
+                    ))}
+                  {/* </Link> */}
+                </div>
               </div>
             </div>
           </Grid>
@@ -187,9 +299,10 @@ function NavigateBar() {
                         className='profile-avatar'
                       />
                       <span>{userData[0].fullName}</span>
-                      
                     </div>
-                    <div className='btn-profile'><div className='btn-profile-inner'>View Profile</div></div>
+                    <div className='btn-profile'>
+                      <div className='btn-profile-inner'>View Profile</div>
+                    </div>
                   </div>
                   <Divider sx={{ my: 0.5 }} />
 

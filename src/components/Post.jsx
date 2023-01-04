@@ -383,19 +383,24 @@ function Post(props) {
   //old
   // console.log(
   //   postData.createAt.split(" ")[0].split("-"), //ngay thang
-  //   postData.createAt.split(" ")[1].split(":") // gio
+  // postData.createAt.split(" ")[1].split(":") // gio
   // );
   //now
   // console.log(new Date().toString().split(" ")[4].split(":")); //gio
   // console.log(formatDate(new Date()).split("-")); // ngay thang
+  // console.log(Number(postData.createAt.split(" ")[0].split(":")[1]));
   let passedTime = 0;
   if (postData.createAt) {
     let dateDayOld = Number(postData.createAt.split(" ")[0].split("-")[2]);
     let dateHourOld = Number(postData.createAt.split(" ")[1].split(":")[0]);
     let dateMinuteOld = Number(postData.createAt.split(" ")[1].split(":")[1]);
     let dateSecondOld = Number(postData.createAt.split(" ")[1].split(":")[2]);
+    let dateYearOld = Number(postData.createAt.split(" ")[0].split("-")[0]);
+    // let dateMonthOld = Number(postData.createAt.split(" ")[0].split("-")[1]);
 
     let dateDayNow = Number(formatDate(new Date()).split("-")[2]);
+    let dateYearNow = Number(formatDate(new Date()).split("-")[0]);
+
     let dateHourNow = Number(new Date().toString().split(" ")[4].split(":")[0]);
     let dateMinuteNow = Number(
       new Date().toString().split(" ")[4].split(":")[1]
@@ -403,19 +408,23 @@ function Post(props) {
     let dateSecondNow = Number(
       new Date().toString().split(" ")[4].split(":")[2]
     );
-    if (dateDayNow > dateDayOld) {
-      passedTime = `${dateDayNow - dateDayOld}d`;
-    } else if (dateDayNow === dateDayOld) {
-      if (dateHourNow > dateHourOld) {
-        passedTime = `${dateHourNow - dateHourOld}h`;
-      } else if (dateHourNow === dateHourOld) {
-        if (dateMinuteNow > dateMinuteOld)
-          passedTime = `${dateMinuteNow - dateMinuteOld}m`;
-        else if (dateMinuteNow === dateMinuteOld) {
-          if (dateSecondNow > dateSecondOld) {
-            passedTime = `${dateSecondNow - dateSecondOld}s`;
-          } else if (dateSecondNow === dateSecondOld) {
-            passedTime = "Just now";
+    if (dateYearNow > dateYearOld) {
+      passedTime = dateYearOld;
+    } else if (dateYearNow === dateYearOld) {
+      if (dateDayNow > dateDayOld) {
+        passedTime = `${dateDayNow - dateDayOld}d`;
+      } else if (dateDayNow === dateDayOld) {
+        if (dateHourNow > dateHourOld) {
+          passedTime = `${dateHourNow - dateHourOld}h`;
+        } else if (dateHourNow === dateHourOld) {
+          if (dateMinuteNow > dateMinuteOld)
+            passedTime = `${dateMinuteNow - dateMinuteOld}m`;
+          else if (dateMinuteNow === dateMinuteOld) {
+            if (dateSecondNow > dateSecondOld) {
+              passedTime = `${dateSecondNow - dateSecondOld}s`;
+            } else if (dateSecondNow === dateSecondOld) {
+              passedTime = "Just now";
+            }
           }
         }
       }
@@ -600,7 +609,7 @@ function Post(props) {
               onChange={handleChange}
               value={inputComment}
               className='post-user-comment'
-              placeholder='Add a comment'
+              placeholder='Add a comment...'
               name='comment'
             />
           </form>
