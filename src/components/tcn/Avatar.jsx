@@ -21,6 +21,7 @@ export default function Avatar() {
   const [user, setUserData] = useState();
   const [request, setRequest] = useState();
   const [status, setStatus] = useState("Follow");
+  const [displayFileType,setDisplayFileType]=useState("none")
   const { id } = useParams();
   console.log(request);
   const userID = Number(Cookies.get("userID"));
@@ -71,6 +72,22 @@ export default function Avatar() {
         });
       }
     };
+    getData();
+  }, []);
+  const getData = async () => {
+    let userID = Cookies.get("userID");
+    let res = await fetch(`http://127.0.0.1:8000/api/v1/friends/${id}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: userID }),
+    });
+    let data = await res.json();
+    setStatus(data.added);
+  };
+
+  useEffect(() => {
     getData();
   }, []);
 
@@ -192,6 +209,13 @@ export default function Avatar() {
     let json = await dataAll.json();
     console.log(json);
   };
+  const handleChangeImage = (e) =>{
+    if (displayFileType==="none"){
+      setDisplayFileType("block")
+    } else {
+      setDisplayFileType("none")
+    }
+  }
 
   return (
     <div>
@@ -214,8 +238,11 @@ export default function Avatar() {
                 style={{ marginTop: -100 }}
               />
               <div className='t-pen'>
-                <i className='fa-solid fa-pen'></i>
+                {Cookies.get("userID") == user.id ?(<i className='fa-solid fa-pen'></i>):(<div></div>)}
+                
               </div>
+              <div onClick={handleChangeImage}>Change photo</div>
+              <input type="file" style={{displayFileType}}/>
             </div>
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
@@ -242,14 +269,21 @@ export default function Avatar() {
               </div>
             </CardContent>
             <CardActions>
-              <Button
-                id='btn-open'
-                size='small'
-                onClick={(e) => onAddFriend(user.id)}
-              >
-                {/* {Cookies.get("userID") == user.id ? "Open to" : "Follow"} */}
-                {status}
-              </Button>
+            {Cookies.get("userID") == user.id ? (
+                <Button id='btn-open' size='small'>
+                  Open to
+                </Button>
+              ) : (
+                <Button
+                  id='btn-open'
+                  size='small'
+                  // onClick={(e) => onAddFriend(user.id)}
+                  value={id}
+                  onClick={(e)=> onAddFriend(user.id)}
+                >
+                  {status}
+                </Button>
+              )}
               <Button id='btn-addprf' size='small'>
                 {Cookies.get("userID") == user.id
                   ? "Add profile section"

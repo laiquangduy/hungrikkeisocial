@@ -8,14 +8,102 @@ import NavigateBar from "./components/NavigateBar";
 import Jobs from "./components/Jobs";
 import Feed from "./components/Feed";
 import Notifications from "./components/Notifications";
-import Cookies from "js-cookie";
+
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PreventAuth from "./utils/PreventAuth";
 import Tcncontainer from "./components/tcn/Tcncontainer";
 
 // import SignIn from './components/Sign
+import React, { useState, useEffect } from "react";
+import Network from "./components/network/Network";
+import Cookie from "js-cookie";
 
-function App() {
+const App = () => {
+  const [users, setUsers] = useState([]);
+  const [friendadd, setFriendadd] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/v1/friends/${Cookie.get("userID")}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setFriendadd(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/v1/users`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setUsers(data);
+        console.log(users);
+      });
+  }, []);
+
+  const btnAccept = (e) => {
+    console.log(e.target.value);
+    let backEndUrl = `http://127.0.0.1:8000/user/friends/request/accept/${e.target.value}`;
+    e.preventDefault();
+
+    fetch(backEndUrl, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Giả lập ở fontend
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const btnremove = (e) => {
+    let backEndUrl = `http://127.0.0.1:8000/user/friends/request/remove/${e.target.value}`;
+    e.preventDefault();
+
+    fetch(backEndUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Giả lập ở fontend
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const btnAdding = (e) => {
+    console.log(e.target.value);
+    let backEndUrl = `http://127.0.0.1:8000/user/friends/request/${e.target.value}`;
+    e.preventDefault();
+    fetch(backEndUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Giả lập ở fontend
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Routes>
@@ -43,7 +131,19 @@ function App() {
               </>
             }
           />
-          <Route path='/mynetwork' />
+          <Route path='/mynetwork' element={
+              <>
+                <NavigateBar />
+                <div className='container-page'>
+                <Network
+                  btnAccept={btnAccept}
+                  btnremove={btnremove}
+                  users={users}
+                  friendadd={friendadd}
+                  btnAdding={btnAdding}/>
+                </div>
+              </>
+            } />
           <Route
             path='/jobs'
             element={
@@ -84,8 +184,10 @@ function App() {
           <Route path='/notifications' />
         </Routes>
       </div> */}
+      
+      {/* <Tcncontainer /> */}
     </>
   );
-}
+};
 
 export default App;

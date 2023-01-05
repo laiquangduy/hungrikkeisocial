@@ -12,7 +12,8 @@ import Reply from "./Reply";
 
 function Comment(props) {
   const { comments } = props;
-  // console.log(comments);
+
+  console.log(comments);
   const [displayRep, setDisplayRep] = useState("none");
   const handleReply = (e) => {
     if (displayRep === "none") {
@@ -54,6 +55,7 @@ function Comment(props) {
                   component='span'
                   variant='body2'
                   color='text.primary'
+                  paddingLeft='5px'
                 >
                   {e.content}
                 </Typography>

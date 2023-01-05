@@ -300,9 +300,10 @@ function NavigateBar() {
                       />
                       <span>{userData[0].fullName}</span>
                     </div>
-                    <div className='btn-profile'>
-                      <div className='btn-profile-inner'>View Profile</div>
-                    </div>
+
+                    <Link to={`/user/${Cookies.get("userID")}`} className='btn-profile'>
+                      <div  className='btn-profile-inner'>View Profile</div>
+                    </Link>
                   </div>
                   <Divider sx={{ my: 0.5 }} />
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 function LikeComment(props) {
   const { comments } = props;
   const [style, setStyle] = useState({ display: "none" });
@@ -264,6 +265,7 @@ function LikeComment(props) {
     }
   };
   const [display, setDisplay] = useState("none");
+  const [inputReply, setInputReplay] = useState("");
   const handleClickReply = (e) => {
     console.log(comments);
     if (display === "none") {
@@ -271,6 +273,37 @@ function LikeComment(props) {
     } else {
       setDisplay("none");
     }
+  };
+  const handleSubmitReply = (e) => {
+    e.preventDefault();
+    console.log(comments.commentID);
+    console.log(e.target.reply.value);
+    console.log(Cookies.get("userID"));
+    if (e.target.reply.value !== "") {
+      let data = {
+        replyOf: Cookies.get("userID"),
+        commentID: comments.commentID,
+        content: e.target.reply.value,
+      };
+      fetch("http://127.0.0.1:8000/api/v1/comments/addReply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setInputReplay("");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+  const handleReplyChange = (e) => {
+    setInputReplay(e.target.value);
   };
 
   return (
@@ -353,25 +386,28 @@ function LikeComment(props) {
         <span className='reply-comment' onClick={handleClickReply}>
           Reply
         </span>
-        <form style={{ display: display }}>
-            <div style={{display:"flex",alignItems:"center"}}>
-          <img
-            alt=''
-            src={comments.userAva}
-            style={{ width: "25px", height: "25px", borderRadius: "50%" }}
-          />
+        <form style={{ display: display }} onSubmit={handleSubmitReply}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <img
+              alt=''
+              src={comments.userAva}
+              style={{ width: "25px", height: "25px", borderRadius: "50%" }}
+            />
 
-          <input
-            style={{
-              borderRadius: "99px",
-              width: "100%",
-              height: "25px",
-              paddingLeft:"5px",
-             outline:"none",
-             marginLeft:"5px"
-            }}
-            className="input-reply"
-          />
+            <input
+              name='reply'
+              style={{
+                borderRadius: "99px",
+                width: "100%",
+                height: "25px",
+                paddingLeft: "5px",
+                outline: "none",
+                marginLeft: "5px",
+              }}
+              onChange={handleReplyChange}
+              value={inputReply}
+              className='input-reply'
+            />
           </div>
         </form>
       </div>
