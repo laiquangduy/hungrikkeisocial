@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { db } from "../components/firebase/config";
+import { addDocument, generateKeywords } from "../components/firebase/services";
+import { AppContext } from "../Context/AppProvider";
 
 import logo from "../logo121.png";
 
@@ -41,14 +44,31 @@ export default function SignUp() {
       setNoLastName("");
       setLocation("Please enter your location.");
     } else {
+      const id = Math.floor(Math.random() * 1000000);
       const data = {
+        id: id,
         email: email,
         password: password,
-        fullName: firstName + lastName,
+        fullName: firstName + " " + lastName,
         job: job,
         company: company,
         location: location,
       };
+      const user = {
+        displayName: firstName + " " + lastName,
+        email: email,
+        photoURL:
+          "https://scr.vn/wp-content/uploads/2020/07/Avatar-Facebook-tr%E1%BA%AFng.jpg",
+        uid: id,
+        providerId: "",
+        keywords: generateKeywords((firstName + lastName).toLowerCase()),
+        friends: [],
+      };
+      addDocument("users", user);
+      // const addUser = db.collection("users").doc(id.toString());
+      // addUser.set({
+      //   ...user,
+      // });
 
       fetch("http://127.0.0.1:8000/auth/register", {
         method: "POST", // or 'PUT'
@@ -158,47 +178,47 @@ export default function SignUp() {
             </div>
             <div className='policy'>
               By clicking Agree & Join, you agree to the Rikkei Social{" "}
-              <a href='/#'>User Agreement</a>, <a href='/#'>Privacy Policy</a>,{" "}
-              <a href='/#'>and Cookie Policy</a>.
+              <a href='#'>User Agreement</a>, <a href='#'>Privacy Policy</a>,{" "}
+              <a href='#'>and Cookie Policy</a>.
             </div>
             <button className='btn-submit'> Agree & Join </button>
             <h5>
               Already on Rikkei Social?
-              <a href='/#'>Sign in</a>
+              <a href='#'>Sign in</a>
             </h5>
           </form>
         </div>
         <div className='vkk'>
-          Looking to create a page for a business? <a href='/#'>Get help</a>
+          Looking to create a page for a business? <a href='#'>Get help</a>
         </div>
         <div>
           <ul className='ul'>
             <li>
-              <a href='/#'>Accessibility</a>
+              <a href='#'>Accessibility</a>
             </li>
             <li>
-              <a href='/#'>Privacy Policy</a>
+              <a href='#'>Privacy Policy</a>
             </li>
             <li>
-              <a href='/#'>Copyright Policy</a>
+              <a href='#'>Copyright Policy</a>
             </li>
             <li>
-              <a href='/#'>Guest Controls</a>
+              <a href='#'>Guest Controls</a>
             </li>
             <li>
-              <a href='/#'>About</a>
+              <a href='#'>About</a>
             </li>
             <li>
-              <a href='/#'>User Agreement</a>
+              <a href='#'>User Agreement</a>
             </li>
             <li>
-              <a href='/#'>Cookie Policy</a>
+              <a href='#'>Cookie Policy</a>
             </li>
             <li>
-              <a href='/#'>Brand Policy</a>
+              <a href='#'>Brand Policy</a>
             </li>
             <li>
-              <a href='/#'>Community Guidelines</a>
+              <a href='#'>Community Guidelines</a>
             </li>
           </ul>
         </div>

@@ -16,12 +16,11 @@ import { useParams } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Cookies from "js-cookie";
 
-
 export default function Avatar() {
   const [user, setUserData] = useState();
   const [request, setRequest] = useState();
   const [status, setStatus] = useState("Follow");
-  const [displayFileType,setDisplayFileType]=useState("none")
+  const [displayFileType, setDisplayFileType] = useState("none");
   const { id } = useParams();
   console.log(request);
   const userID = Number(Cookies.get("userID"));
@@ -61,7 +60,10 @@ export default function Avatar() {
             } else if (e.added === "true") {
               setStatus("Friend");
             }
-          } else if (userID === Number(e.id) && Number(id) === Number(e.friendID)) {
+          } else if (
+            userID === Number(e.id) &&
+            Number(id) === Number(e.friendID)
+          ) {
             if (e.added === "false") {
               setStatus("Cancel");
             } else if (e.added === "true") {
@@ -90,8 +92,6 @@ export default function Avatar() {
   useEffect(() => {
     getData();
   }, []);
-
-
 
   const card = (
     <React.Fragment>
@@ -209,13 +209,13 @@ export default function Avatar() {
     let json = await dataAll.json();
     console.log(json);
   };
-  const handleChangeImage = (e) =>{
-    if (displayFileType==="none"){
-      setDisplayFileType("block")
+  const handleChangeImage = (e) => {
+    if (displayFileType === "none") {
+      setDisplayFileType("block");
     } else {
-      setDisplayFileType("none")
+      setDisplayFileType("none");
     }
-  }
+  };
 
   return (
     <div>
@@ -238,11 +238,22 @@ export default function Avatar() {
                 style={{ marginTop: -100 }}
               />
               <div className='t-pen'>
-                {Cookies.get("userID") == user.id ?(<i className='fa-solid fa-pen'></i>):(<div></div>)}
-                
+                {Number(Cookies.get("userID")) === user.id ? (
+                  <>
+                  <Button className="upload-avatar" variant='contained' component='label'>
+                  <i className='fa-solid fa-pen' />
+                      <input type='file' hidden />
+                    </Button>
+                    {" "}
+                    <Button className="upload-img" variant='contained' component='label'>
+                      Upload Profile
+                      <input type='file' hidden />
+                    </Button>
+                  </>
+                ) : (
+                  <div></div>
+                )}
               </div>
-              <div onClick={handleChangeImage}>Change photo</div>
-              <input type="file" style={{displayFileType}}/>
             </div>
             <CardContent>
               <Typography gutterBottom variant='h5' component='div'>
@@ -269,7 +280,7 @@ export default function Avatar() {
               </div>
             </CardContent>
             <CardActions>
-            {Cookies.get("userID") == user.id ? (
+              {Cookies.get("userID") == user.id ? (
                 <Button id='btn-open' size='small'>
                   Open to
                 </Button>
@@ -279,7 +290,7 @@ export default function Avatar() {
                   size='small'
                   // onClick={(e) => onAddFriend(user.id)}
                   value={id}
-                  onClick={(e)=> onAddFriend(user.id)}
+                  onClick={(e) => onAddFriend(user.id)}
                 >
                   {status}
                 </Button>

@@ -1037,4 +1037,16 @@ Set position cho các lớp mặt nạ để đè lên background gradient */
   padding-left: 5px;
   padding-right: 5px;
 }
-
+/* Viet Anh */
+.upload-avatar{
+  position: absolute !important;
+  left: 21%;
+  top: 41%;
+  background: none !important;
+  color: gray !important;
+  box-shadow: none !important;
+}
+.upload-img{
+  position: absolute !important;
+  left: 50%;
+}
